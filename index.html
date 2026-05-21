@@ -61,6 +61,33 @@ body {
 
 nav, .hero, .ticker-strip, section, footer { position: relative; z-index: 2; }
 
+/* NAV ACTIVE */
+.nav-right a.active { color: var(--accent); text-shadow: 0 0 14px rgba(126,184,255,0.6); }
+
+/* MOBILE BOTTOM NAV */
+.mobile-nav {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(2,2,18,0.94); backdrop-filter: blur(24px);
+  border-top: 1px solid var(--border-light);
+  padding: 10px 0 calc(10px + env(safe-area-inset-bottom, 0px));
+}
+.mobile-nav-inner {
+  display: flex; gap: 8px; overflow-x: auto; padding: 0 16px;
+  scrollbar-width: none; -ms-overflow-style: none;
+}
+.mobile-nav-inner::-webkit-scrollbar { display: none; }
+.mnav-btn {
+  flex-shrink: 0; padding: 7px 14px; border-radius: 20px;
+  border: 1px solid rgba(80,80,180,0.22);
+  color: var(--secondary); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; text-decoration: none;
+  background: rgba(8,8,28,0.5); transition: all 0.2s; white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+.mnav-btn.active {
+  background: rgba(126,184,255,0.12); border-color: rgba(126,184,255,0.55); color: var(--accent);
+}
+
 /* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -346,6 +373,8 @@ footer {
 .table-scroll .data-table { min-width: 640px; }
 
 @media (max-width: 900px) {
+  .mobile-nav { display: block; }
+  body { padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px)); }
   nav { padding: 0 20px; }
   .nav-right { gap: 20px; font-size: 10px; }
   section { padding: 60px 20px; }
@@ -403,11 +432,29 @@ footer {
   <div class="nav-right">
     <a href="#overview">Overview</a>
     <a href="#segments">Segments</a>
+    <a href="#starship">Starship</a>
     <a href="#financials">Financials</a>
     <a href="#tam">Market</a>
     <a href="#strengths">Strengths</a>
+    <a href="#risks">Risks</a>
   </div>
 </nav>
+
+<!-- MOBILE BOTTOM NAV -->
+<div class="mobile-nav">
+  <div class="mobile-nav-inner">
+    <a href="#overview" class="mnav-btn">Overview</a>
+    <a href="#segments" class="mnav-btn">Segments</a>
+    <a href="#starship" class="mnav-btn">Starship</a>
+    <a href="#financials" class="mnav-btn">Financials</a>
+    <a href="#capex" class="mnav-btn">CapEx</a>
+    <a href="#tam" class="mnav-btn">Market</a>
+    <a href="#strengths" class="mnav-btn">Strengths</a>
+    <a href="#growth" class="mnav-btn">Growth</a>
+    <a href="#risks" class="mnav-btn">Risks</a>
+    <a href="#corporate" class="mnav-btn">Structure</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -589,7 +636,7 @@ footer {
 </section>
 
 <!-- STARSHIP -->
-<section>
+<section id="starship">
   <div class="section-eyebrow">Starship</div>
   <h2 class="section-title">The Key Enabler of Our<br>Long-Term Growth Strategy</h2>
   <p class="section-sub">"Starship is designed to enable a step-function change in our launch capability across reusability, payload capacity, and launch cadence, and is the key enabler of our long-term growth strategy by unlocking entirely new categories of missions."</p>
@@ -711,7 +758,7 @@ footer {
 </section>
 
 <!-- CAPEX -->
-<section>
+<section id="capex">
   <div class="section-eyebrow">Capital Expenditures by Segment</div>
   <h2 class="section-title">Capital Expenditures</h2>
   <p class="section-sub">Space segment funded $930M in Starship R&D during Q1 2026 alone, and $3.0B during FY 2025. Terafab — a collaboration with Tesla (March 2026) and Intel (April 2026) — has a long-term goal of producing one terawatt of compute hardware per year.</p>
@@ -841,7 +888,7 @@ footer {
 </section>
 
 <!-- GROWTH STRATEGIES -->
-<section>
+<section id="growth">
   <div class="section-eyebrow">Our Growth Strategies</div>
   <h2 class="section-title">Growth Strategies &amp;<br>Future Markets</h2>
   <p class="section-sub">Future Markets are listed separately in the S-1. "Certain of these industries, such as space tourism and cargo transport to the Moon, are still emerging. Others, including in-orbit manufacturing, passenger transport to the Moon, passenger and cargo transport to Mars, energy production on the Moon and Mars, manufacturing capabilities on the Moon and Mars, and asteroid mining, do not exist today."</p>
@@ -916,7 +963,7 @@ footer {
 </section>
 
 <!-- RISKS -->
-<section>
+<section id="risks">
   <div class="section-eyebrow">Risk Factors</div>
   <h2 class="section-title">Summary of<br>Principal Risk Factors</h2>
   <p class="section-sub">"Because we are attempting to execute at a scale for which there is no precedent, we face heightened uncertainty with respect to design, engineering, procurement, construction, commissioning, and operational performance."</p>
@@ -1007,7 +1054,7 @@ footer {
 </section>
 
 <!-- CORPORATE -->
-<section>
+<section id="corporate">
   <div class="section-eyebrow">The Offering</div>
   <h2 class="section-title">Corporate Structure</h2>
   <p class="section-sub">"We were founded and incorporated as Space Exploration Technologies Corp., a Delaware corporation, on March 14, 2002 and reincorporated as a Texas corporation on February 14, 2024. Our principal executive offices are located at 1 Rocket Road, Starbase, Texas 78521."</p>
@@ -1164,6 +1211,24 @@ footer {
   resize(); makeStars(); requestAnimationFrame(draw);
   window.addEventListener('resize', () => { resize(); makeStars(); });
   for (let i = 0; i < 4; i++) setTimeout(spawn, i * 600 + 400);
+})();
+
+// Scroll spy — active nav state
+(function() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-right a, .mnav-btn');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+        // scroll active mobile pill into view
+        const pill = document.querySelector(`.mnav-btn[href="#${id}"]`);
+        if (pill) pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    });
+  }, { rootMargin: '-35% 0px -45% 0px' });
+  sections.forEach(s => obs.observe(s));
 })();
 
 // Toggle handler
