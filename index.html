@@ -184,7 +184,7 @@ section:nth-child(even)::after { width: 700px; height: 450px; bottom: -120px; le
 /* ── TOGGLE PATTERN ── */
 .toggleable { display: flex; flex-direction: column; }
 
-.summ { font-size: 13px; color: var(--secondary); line-height: 1.72; }
+.summ { font-size: 14.5px; color: #c8c8e0; line-height: 1.78; max-width: 66ch; }
 
 .qbtn {
   display: inline-flex; align-items: center; gap: 5px;
@@ -206,22 +206,12 @@ section:nth-child(even)::after { width: 700px; height: 450px; bottom: -120px; le
   max-height: 600px; opacity: 1; margin-top: 14px;
 }
 .qrev-inner {
-  font-size: 12.5px; font-style: italic; color: var(--tertiary); line-height: 1.75;
+  font-size: 14px; font-style: italic; color: var(--tertiary); line-height: 1.78;
   border-left: 1px solid rgba(126,184,255,0.25); padding-left: 14px;
 }
 
 /* li toggleable adjustments */
-.li .toggleable .summ { font-size: 13px; }
-.li .toggleable .qrev-inner { font-size: 12px; }
-
-/* card body toggleable */
-.card-body.toggleable .summ { font-size: 13.5px; color: var(--secondary); line-height: 1.78; }
-
-/* seg desc toggleable */
-.seg-desc .summ { font-size: 13px; }
-
-/* fw-cell p toggleable */
-.fw-cell .toggleable .summ { font-size: 13px; }
+.li .toggleable .summ strong { color: var(--primary); }
 
 /* CARD BASE */
 .card {
@@ -331,15 +321,13 @@ section:nth-child(even)::after { width: 700px; height: 450px; bottom: -120px; le
 .li {
   display: flex; align-items: flex-start; gap: 14px; padding: 18px;
   background: rgba(8,8,28,0.72); border: 1px solid var(--border);
-  font-size: 13px; color: var(--secondary); line-height: 1.62;
+  font-size: 14px; color: #c8c8e0; line-height: 1.7;
   backdrop-filter: blur(8px); transition: border-color 0.3s;
 }
 .li:hover { border-color: var(--border-light); }
 .li-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; box-shadow: 0 0 8px rgba(126,184,255,0.6); }
 .li-dot.red { background: var(--red); box-shadow: 0 0 8px rgba(255,82,112,0.55); }
 .li-dot.gold { background: var(--gold); box-shadow: 0 0 8px rgba(255,200,100,0.45); }
-.li .toggleable .summ strong { color: var(--primary); }
-
 /* CAPEX */
 .capex-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 36px; }
 .capex-card { background: rgba(8,8,28,0.88); border: 1px solid var(--border-light); padding: 36px; backdrop-filter: blur(14px); transition: border-color 0.3s; }
