@@ -185,9 +185,9 @@ section:nth-child(even)::after { width: 700px; height: 450px; bottom: -120px; le
 .toggleable { display: flex; flex-direction: column; }
 
 .summ { font-size: 14.5px; color: #c8c8e0; line-height: 1.78; max-width: 66ch; }
-.summ ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 5px; }
-.summ li { padding-left: 16px; position: relative; }
-.summ li::before { content: '—'; position: absolute; left: 0; color: var(--accent); opacity: 0.5; }
+.summ ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.summ li { display: flex; gap: 10px; align-items: baseline; }
+.summ li::before { content: '—'; color: var(--accent); opacity: 0.5; flex-shrink: 0; }
 
 .qbtn {
   display: inline-flex; align-items: center; gap: 5px;
