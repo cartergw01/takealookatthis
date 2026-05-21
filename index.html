@@ -59,7 +59,7 @@ body {
   100% { transform: translate(-20px,-20px) scale(1.02); }
 }
 
-nav, .hero, .ticker-strip, section, footer { position: relative; z-index: 2; }
+.hero, .ticker-strip, section, footer { position: relative; z-index: 2; }
 
 /* NAV ACTIVE */
 .nav-right a.active { color: var(--accent); text-shadow: 0 0 14px rgba(126,184,255,0.6); }
@@ -185,6 +185,9 @@ section:nth-child(even)::after { width: 700px; height: 450px; bottom: -120px; le
 .toggleable { display: flex; flex-direction: column; }
 
 .summ { font-size: 14.5px; color: #c8c8e0; line-height: 1.78; max-width: 66ch; }
+.summ ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 5px; }
+.summ li { padding-left: 16px; position: relative; }
+.summ li::before { content: '—'; position: absolute; left: 0; color: var(--accent); opacity: 0.5; }
 
 .qbtn {
   display: inline-flex; align-items: center; gap: 5px;
@@ -215,8 +218,8 @@ section:nth-child(even)::after { width: 700px; height: 450px; bottom: -120px; le
 
 /* CARD BASE */
 .card {
-  background: rgba(8,8,28,0.88); border: 1px solid var(--border-light);
-  backdrop-filter: blur(14px); position: relative; overflow: hidden;
+  background: rgba(8,8,28,0.97); border: 1px solid var(--border-light);
+  position: relative; overflow: hidden;
   transition: border-color 0.3s;
 }
 .card:hover { border-color: rgba(126,184,255,0.38); }
@@ -259,7 +262,7 @@ section:nth-child(even)::after { width: 700px; height: 450px; bottom: -120px; le
 .stat-val { font-weight: 600; font-size: 13px; }
 
 /* CHART */
-.chart-wrap { background: rgba(8,8,28,0.88); border: 1px solid var(--border-light); padding: 44px; backdrop-filter: blur(14px); }
+.chart-wrap { background: rgba(6,6,22,0.97); border: 1px solid var(--border-light); padding: 44px; }
 .chart-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--secondary); margin-bottom: 36px; }
 .bar-chart { display: flex; align-items: flex-end; gap: 18px; height: 190px; }
 .bar-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%; justify-content: flex-end; }
@@ -271,7 +274,7 @@ section:nth-child(even)::after { width: 700px; height: 450px; bottom: -120px; le
 
 /* KPI */
 .kpi-stack { display: flex; flex-direction: column; gap: 16px; }
-.kpi-card { background: rgba(8,8,28,0.88); border: 1px solid var(--border-light); padding: 22px 26px; backdrop-filter: blur(14px); transition: border-color 0.3s; }
+.kpi-card { background: rgba(6,6,22,0.97); border: 1px solid var(--border-light); padding: 22px 26px; transition: border-color 0.3s; }
 .kpi-card:hover { border-color: rgba(126,184,255,0.3); }
 .kpi-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
 .kpi-val { font-size: 26px; font-weight: 700; letter-spacing: -0.04em; }
@@ -301,7 +304,7 @@ section:nth-child(even)::after { width: 700px; height: 450px; bottom: -120px; le
 .tam-bar-amt { color: var(--primary); font-weight: 700; }
 .tam-bar-track { height: 3px; background: rgba(80,80,180,0.18); border-radius: 2px; overflow: hidden; }
 .tam-bar-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, #1a4a8a 0%, #7eb8ff 55%, #b36bff 100%); box-shadow: 0 0 8px rgba(126,184,255,0.45); }
-.tam-breakdown { padding: 36px; background: rgba(8,8,28,0.88); border: 1px solid var(--border-light); backdrop-filter: blur(14px); }
+.tam-breakdown { padding: 36px; background: rgba(6,6,22,0.97); border: 1px solid var(--border-light); }
 .tam-breakdown h4 { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
 .tam-row { display: flex; justify-content: space-between; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
 .tam-row:last-child { border-bottom: none; }
@@ -319,18 +322,17 @@ section:nth-child(even)::after { width: 700px; height: 450px; bottom: -120px; le
 /* LIST */
 .list-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .li {
-  display: flex; align-items: flex-start; gap: 14px; padding: 18px;
-  background: rgba(8,8,28,0.72); border: 1px solid var(--border);
+  display: flex; align-items: flex-start; gap: 14px; padding: 18px 0;
+  border-bottom: 1px solid var(--border);
   font-size: 14px; color: #c8c8e0; line-height: 1.7;
-  backdrop-filter: blur(8px); transition: border-color 0.3s;
 }
-.li:hover { border-color: var(--border-light); }
+.li:last-child { border-bottom: none; }
 .li-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; box-shadow: 0 0 8px rgba(126,184,255,0.6); }
 .li-dot.red { background: var(--red); box-shadow: 0 0 8px rgba(255,82,112,0.55); }
 .li-dot.gold { background: var(--gold); box-shadow: 0 0 8px rgba(255,200,100,0.45); }
 /* CAPEX */
 .capex-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 36px; }
-.capex-card { background: rgba(8,8,28,0.88); border: 1px solid var(--border-light); padding: 36px; backdrop-filter: blur(14px); transition: border-color 0.3s; }
+.capex-card { background: rgba(6,6,22,0.97); border: 1px solid var(--border-light); padding: 36px; transition: border-color 0.3s; }
 .capex-card:hover { border-color: rgba(126,184,255,0.32); }
 .capex-seg { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--secondary); margin-bottom: 18px; }
 .capex-val { font-size: 40px; font-weight: 900; letter-spacing: -0.055em; margin-bottom: 4px; }
@@ -507,7 +509,7 @@ footer {
       <div class="card-num">01</div>
       <div class="card-title">The Mission</div>
       <div class="toggleable">
-        <div class="summ">The only company building integrated infrastructure across space, connectivity, and AI simultaneously. Designs, manufactures, launches, and operates rockets and spacecraft.</div>
+        <div class="summ"><ul><li>Only company integrating space, connectivity, and AI hardware and software</li><li>Designs, manufactures, launches, and operates rockets and spacecraft</li><li>Founded 2002; reincorporated in Texas 2024</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Founded in 2002, SpaceX is the only company building the integrated hardware and software infrastructure of the future across space, connectivity, and AI. At our core, we are builders. We design, manufacture, launch, and operate products and services built on cutting-edge technologies, including the world's most advanced rockets and spacecraft."</div></div>
       </div>
@@ -517,7 +519,7 @@ footer {
       <div class="card-num">02</div>
       <div class="card-title">The Convergence</div>
       <div class="toggleable">
-        <div class="summ">AI's compute demands are growing faster than terrestrial energy supply — US electricity generation grew less than 3%/year between 2023 and 2025 while AI data center demand surged, creating a resource constraint SpaceX believes only space can solve.</div>
+        <div class="summ"><ul><li>US electricity grew &lt;3%/yr from 2023–2025; AI data center demand surged far beyond that</li><li>Terrestrial energy supply can't keep pace with AI compute needs</li><li>SpaceX believes only space can solve this at scale</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"The rapid emergence of the AI era intensifies the urgency of our mission, as AI has the potential to accelerate not only space exploration, but also transformative societal advancements on Earth. However, AI's ability to revolutionize human potential is directly dependent on meeting exponentially increasing resource demands… electricity generation in the United States has grown at an annual rate of less than 3% between 2023 and 2025, while electricity generation in China has grown at approximately twice that rate."</div></div>
       </div>
@@ -527,7 +529,7 @@ footer {
       <div class="card-num">03</div>
       <div class="card-title">Space-Based Solar</div>
       <div class="toggleable">
-        <div class="summ">Space-based solar arrays generate 5× more energy per unit area than ground-based equivalents due to continuous illumination and no atmospheric interference. SpaceX's satellite manufacturing and launch scale makes space-based solar economically accessible for the first time.</div>
+        <div class="summ"><ul><li>Space solar arrays produce 5× more energy per unit area than ground arrays</li><li>Continuous sunlight, no atmosphere, optimal orientation year-round</li><li>SpaceX's launch scale makes this economically viable for the first time</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"The Sun contains approximately 99.8% of the solar system's energy and, as a result, we believe it is the only truly scalable solution to terrestrial energy constraints in the age of AI. Space-based solar arrays can generate more than five times the energy per unit area of terrestrial solar due to continuous illumination, lack of atmospheric interference, and optimal orientation."</div></div>
       </div>
@@ -537,7 +539,7 @@ footer {
       <div class="card-num">04</div>
       <div class="card-title">The Next Paradigm</div>
       <div class="toggleable">
-        <div class="summ">SpaceX frames a multiplanetary civilization as both an economic expansion opportunity and an existential necessity — establishing a lunar presence first, then Mars, ultimately reaching Kardashev Type II civilization status by harnessing the full energy of the Sun.</div>
+        <div class="summ"><ul><li>Goal: Kardashev Type II civilization — harnessing the full energy of the Sun</li><li>Path: lunar presence first, then Mars, then beyond</li><li>Framed as both economic expansion and existential risk reduction</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"We believe the next paradigm shift for humanity is the creation of a resilient, perpetually expanding spacefaring civilization that drives continuous innovation across new frontiers, ultimately propelling us to Kardashev Type II status — we believe we are capable of unlocking an era of unprecedented economic expansion, while also contributing to the safeguards of humanity's future against existential risk."</div></div>
       </div>
@@ -561,7 +563,7 @@ footer {
       <div class="seg-sub c-accent">Falcon 9 · Falcon Heavy · Dragon · Starship</div>
       <div class="seg-desc">
         <div class="toggleable">
-          <div class="summ">SpaceX executes more than 80% of global mass to orbit annually since 2023, with a 99%+ mission success rate. Falcon 9 reduced cost to orbit ~85% vs. the historical average, according to NASA. All-time: ~650 orbital launches, ~7,400 metric tons delivered, single booster reflown up to 34 times.</div>
+          <div class="summ"><ul><li>80%+ of global mass to orbit annually since 2023; 99%+ mission success rate</li><li>Falcon 9 cut launch cost ~85% vs. historical average ($2,700/kg vs. $18,500/kg)</li><li>~650 orbital launches all-time; single booster reflown up to 34×</li></ul></div>
           <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
           <div class="qrev"><div class="qrev-inner">"SpaceX is the only company that has cracked the code on accessing space at scale, revolutionizing an industry characterized by decades of stagnation, risk aversion, and economically perverse cost structures." According to NASA, Falcon 9 reduced launch cost to approximately $2,700 per kilogram — approximately 85% less than the historical average launch cost of $18,500 per kilogram.</div></div>
         </div>
@@ -583,7 +585,7 @@ footer {
       <div class="seg-sub" style="color:var(--green);">Starlink Broadband · Mobile · Enterprise · Gov</div>
       <div class="seg-desc">
         <div class="toggleable">
-          <div class="summ">Starlink is the only global low-latency broadband satellite network. ~9,600 satellites in LEO — approximately 75% of all active maneuverable satellites in orbit — deliver 225 Mbps median speeds to 10.3M subscribers across 164 countries. A separate constellation of ~650 satellites provides satellite-to-mobile service across ~30 countries.</div>
+          <div class="summ"><ul><li>Only global low-latency satellite broadband; 225 Mbps median peak speeds</li><li>~9,600 satellites in LEO — ~75% of all active maneuverable satellites in orbit</li><li>10.3M subscribers across 164 countries as of Q1 2026; $66/mo ARPU</li></ul></div>
           <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
           <div class="qrev"><div class="qrev-inner">"Today, Starlink is the sole low-latency network available globally." "We provide fiber-like download speeds at a median of 225 Mbps during peak hours for residential users as of March 31, 2026 and the technological capability to provide service everywhere on Earth, including the poles." "While building terrestrial networks in such communities can be prohibitively expensive, Starlink is capable of delivering broadband connectivity anywhere on Earth with just a Starlink Kit."</div></div>
         </div>
@@ -605,7 +607,7 @@ footer {
       <div class="seg-sub" style="color:var(--accent2);">Grok · xAI · X Platform · Colossus · Terafab</div>
       <div class="seg-desc">
         <div class="toggleable">
-          <div class="summ">xAI was acquired by SpaceX in February 2026. SpaceX was the first company to deploy a gigawatt-scale AI training cluster. Grok is integrated with X's real-time data feed. As of Q1 2026: 550M MAUs on X, 117M using Grok AI features. Anthropic pays $1.25B/month for Colossus compute capacity through May 2029.</div>
+          <div class="summ"><ul><li>xAI acquired by SpaceX February 2026; X Holdings acquired by xAI March 2025</li><li>First company to deploy a gigawatt-scale AI training cluster (1 GW as of Q1 2026)</li><li>550M MAUs on X; 117M using Grok; Anthropic pays $1.25B/month for compute</li></ul></div>
           <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
           <div class="qrev"><div class="qrev-inner">"We were the first company to deploy a coherent gigawatt-scale AI training cluster." "Grok is designed as a truth-seeking AI model, built on our founder Elon Musk's mission to enable humanity to understand the universe. We define truth seeking as the active, relentless pursuit of what is objectively true about reality, and grounded in evidence, logic, empirical data, and first principles thinking." "Grok's deep integration with X enables freshness, relevance, and contextual awareness that we believe is a competitive differentiator."</div></div>
         </div>
@@ -634,7 +636,7 @@ footer {
     <div class="overview-card">
       <div class="card-title">Starship V3</div>
       <div class="toggleable" style="margin-top:16px;">
-        <div class="summ">Designed for 100 metric tons to LEO in a fully reusable configuration with aviation-like turnaround times. 11 flight tests completed to date. Payload delivery to orbit expected H2 2026. V3 satellites and orbital AI compute both require Starship — neither can be deployed on Falcon 9 or Falcon Heavy.</div>
+        <div class="summ"><ul><li>100 MT to LEO fully reusable; aviation-like turnaround times</li><li>11 flight tests completed; payload delivery to orbit expected H2 2026</li><li>V3 satellites and orbital AI compute cannot fly on Falcon 9 or Falcon Heavy</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Starship V3 is designed to deliver 100 metric tons to Earth's orbit in a fully reusable configuration while enabling rapid turnaround times akin to commercial aviation. Future generations of Starship are being designed to double this payload capacity." "With the future deployment of Starship… we aim to reduce the cost to reach orbit by 99% or more relative to the historical average launch cost." "We expect Starship to commence payload delivery to orbit in the second half of 2026."</div></div>
       </div>
@@ -643,7 +645,7 @@ footer {
     <div class="overview-card">
       <div class="card-title">Catch and Reuse</div>
       <div class="toggleable" style="margin-top:16px;">
-        <div class="summ">SpaceX catches Starship boosters mid-air using mechanical arms mounted on the launch tower — the same tower the rocket launched from. This enables rapid reuse without ground transport or stand-down time. Current FAA regulations do not permit return-to-launch-site reentries for Starship; a waiver is required and not yet guaranteed.</div>
+        <div class="summ"><ul><li>Catches boosters mid-air using arms on the same tower they launched from</li><li>Enables rapid reuse with no ground transport or stand-down time</li><li>FAA currently does not permit RTLS reentries for Starship; waiver not guaranteed</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"We have achieved innovative milestones such as catching a booster using chopstick arms on the same tower it launched from. We expect this capability will facilitate rapid refurbishment and reuse, allowing for multiple launches per day at reduced costs." "Current FAA regulations do not permit return-to-launch-site reentries for Starship, requiring us to obtain a waiver from the FAA, which is not guaranteed and could delay or restrict such operations."</div></div>
       </div>
@@ -821,7 +823,7 @@ footer {
     <div class="fw-cell" data-num="1">
       <h3>Global Launch Leadership</h3>
       <div class="toggleable">
-        <div class="summ">More than 80% of global mass to orbit annually since 2023. Primary launch provider for the US government — 11 of 12 NSSL missions and all 5 NASA ISS missions in 2025.</div>
+        <div class="summ"><ul><li>80%+ of global mass to orbit annually since 2023; 99%+ mission success</li><li>11 of 12 NSSL missions in 2025; all 5 NASA ISS crew and cargo missions</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Since 2023, we have launched more than 80% of mass to orbit for the world each year with an over 99% mission success rate with Falcon rockets." "In 2025, we launched 11 of 12 National Security Space Launch medium and heavy lift missions and all five U.S. crew and cargo missions to the International Space Station for NASA."</div></div>
       </div>
@@ -830,7 +832,7 @@ footer {
     <div class="fw-cell" data-num="2">
       <h3>Extreme Vertical Integration</h3>
       <div class="toggleable">
-        <div class="summ">SpaceX owns the full value chain from design to launch to operations. No external dependencies on core systems. Enables faster iteration at lower cost than competitors relying on third-party suppliers.</div>
+        <div class="summ"><ul><li>Full value chain from design to launch to operations; no external dependencies</li><li>Faster iteration and lower cost than competitors using third-party suppliers</li><li>Uses a proprietary five-step process called "The Algorithm"</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Our extensive vertical integration and end-to-end control over the entire value chain, from design to launch to operations, allows us to achieve unprecedented speed and cost efficiency." "Our intense, mission-driven, engineering-first culture and focus on extreme vertical integration have propelled us to achieve what many deemed impossible."</div></div>
       </div>
@@ -839,7 +841,7 @@ footer {
     <div class="fw-cell" data-num="3">
       <h3>Sole Global Low-Latency Network</h3>
       <div class="toggleable">
-        <div class="summ">~9,600 satellites represent ~75% of all active maneuverable satellites in orbit. Connectivity requires only a Starlink Kit, with no ground infrastructure. Compounding advantage as launch cadence, cargo capacity, and reusability all improve together.</div>
+        <div class="summ"><ul><li>~9,600 satellites = ~75% of all active maneuverable satellites in orbit</li><li>Only a Starlink Kit needed; no ground infrastructure required</li><li>Compounding advantage as cadence, capacity, and reusability improve together</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Today, Starlink is the sole low-latency network available globally." "By combining increasing launch cadence, expanding cargo capacity, and declining unit costs driven by rapid reusability — we have generated a compounding competitive advantage. This not only fortifies our core business, but also provides vast new market opportunities uniquely enabled by space."</div></div>
       </div>
@@ -848,7 +850,7 @@ footer {
     <div class="fw-cell" data-num="4">
       <h3>Truth-Seeking AI + Real-Time Data</h3>
       <div class="toggleable">
-        <div class="summ">Grok is built to pursue objective truth through evidence and first-principles reasoning. Integration with X's live data stream gives it contextual awareness and recency unavailable to models trained only on static datasets.</div>
+        <div class="summ"><ul><li>Built on evidence, logic, empirical data, and first-principles thinking</li><li>X integration gives real-time data and contextual awareness</li><li>117M Grok MAUs as of Q1 2026</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"We define truth seeking as the active, relentless pursuit of what is objectively true about reality, and grounded in evidence, logic, empirical data, and first principles thinking. Our goal is to understand and explain what the universe appears to be doing, as accurately as current knowledge allows." "Grok's deep integration with X enables freshness, relevance, and contextual awareness that we believe is a competitive differentiator."</div></div>
       </div>
@@ -857,7 +859,7 @@ footer {
     <div class="fw-cell" data-num="5">
       <h3>Orbital AI Compute</h3>
       <div class="toggleable">
-        <div class="summ">SpaceX plans to deploy AI compute satellites in Sun-synchronous orbit, powered by solar energy and connected via Starlink. Target: 100 GW of orbital compute capacity. Economically requires full Starship reusability. First deployment targeted as early as 2028.</div>
+        <div class="summ"><ul><li>AI compute satellites in Sun-synchronous orbit; solar-powered, Starlink-connected</li><li>Target: 100 GW of orbital compute capacity</li><li>Requires full Starship reusability; first deployment targeted as early as 2028</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"We believe these AI compute satellites in Sun-synchronous orbit will be able to handle energy-intensive AI workloads, such as inference demand, at far greater scale and efficiency than terrestrial alternatives, with Starlink providing low-latency, global connectivity linking these orbital AI systems to people around the world and delivering real-time intelligence. We expect to begin deploying our orbital AI compute satellites as early as 2028." "AI compute satellites at scale need full Starship reusability to be economically compelling."</div></div>
       </div>
@@ -866,7 +868,7 @@ footer {
     <div class="fw-cell" data-num="6">
       <h3>Mission-Driven Culture</h3>
       <div class="toggleable">
-        <div class="summ">SpaceX applies first-principles engineering — rejecting industry assumptions, deriving solutions from physics. Uses a five-step internal process called "The Algorithm." 170 orbital launches in 2025 is the operational output of that culture.</div>
+        <div class="summ"><ul><li>First-principles engineering: reject assumptions, derive from physics</li><li>Proprietary five-step process called "The Algorithm" drives rapid innovation</li><li>170 orbital launches in 2025</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"SpaceX upended this paradigm through the application of first-principles thinking, which rejects industry assumptions and builds solutions based on the fundamental laws of physics." "SpaceX uses a proprietary five-step process called 'The Algorithm' to drive rapid innovation." "Our intense, mission-driven, engineering-first culture and focus on extreme vertical integration have propelled us to achieve what many deemed impossible."</div></div>
       </div>
@@ -885,7 +887,7 @@ footer {
 
     <div class="li"><div class="li-dot"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Increase launch payload capacity.</strong> Dependent on Starship V3, designed for 100 MT to LEO in a fully reusable configuration. V3 satellites cannot be deployed on Falcon 9 or Falcon Heavy.</div>
+        <div class="summ"><ul><li><strong>Increase launch payload capacity</strong></li><li>Starship V3: 100 MT to LEO fully reusable</li><li>Current Falcon rockets cannot deploy V3 or V2 Mobile satellites</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Our current operational rockets, including Falcon 9 and Falcon Heavy, are not capable of deploying V3 satellites and V2 Mobile satellites." "If we are unable to achieve the commercial development, anticipated performance, launch cadence, or cost efficiencies associated with Starship within expected timeframes, our ability to deploy next-generation V3 satellites, V2 Mobile satellites, and orbital AI compute infrastructure at scale… could be materially and adversely affected."</div></div>
       </div>
@@ -893,7 +895,7 @@ footer {
 
     <div class="li"><div class="li-dot"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Grow Starlink Broadband and expand Starlink Mobile.</strong> EchoStar spectrum acquisition approved by FCC on May 12, 2026; expected to close November 2027. Provides AWS-3, AWS-4, and H-Block spectrum licenses needed for global V2 Mobile service and the $740B mobile TAM.</div>
+        <div class="summ"><ul><li><strong>Grow Starlink Broadband; expand Starlink Mobile</strong></li><li>EchoStar spectrum deal (AWS-3, AWS-4, H-Block) approved by FCC May 12, 2026</li><li>Expected close November 2027; unlocks $740B mobile TAM</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"In September 2025, we announced a definitive agreement with EchoStar to purchase its AWS-4 and H-block spectrum licenses. The Spectrum Transaction was approved by the FCC on May 12, 2026 and is subject to other closing conditions prior to completion. We expect the Spectrum Transaction to close in November 2027." "We must secure the global right to use the spectrum acquired from EchoStar from a number of international telecommunications regulators in order to make our V2 satellite-to-mobile services usable worldwide."</div></div>
       </div>
@@ -901,7 +903,7 @@ footer {
 
     <div class="li"><div class="li-dot"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Deploy orbital AI compute at scale.</strong> Goal: 100 GW of annual compute power in orbit. Requires full Starship reusability to be economical. First deployment targeted as early as 2028. Powered by space-based solar, connected via Starlink.</div>
+        <div class="summ"><ul><li><strong>Deploy orbital AI compute at scale</strong></li><li>Goal: 100 GW of annual compute in orbit; first deployment targeted 2028</li><li>Solar-powered, Starlink-connected; requires full Starship reusability</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Our goal is to deploy 100 gigawatts of annual compute power to orbit." "AI compute satellites at scale need full Starship reusability to be economically compelling. Without full reusability and rapid turnaround, Starship would still be capable of enabling progress on our next-generation Starlink, direct-to-cell, initial lunar objectives, and early AI compute satellite deployments, but such progress would be at a slower pace and higher cost."</div></div>
       </div>
@@ -909,7 +911,7 @@ footer {
 
     <div class="li"><div class="li-dot"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Design and manufacture our own chips (Terafab).</strong> Collaboration with Tesla (March 2026) and Intel (April 2026). Long-term goal: one terawatt of compute hardware per year. Intended to reduce dependence on third-party GPU suppliers and produce chips optimized for the space environment.</div>
+        <div class="summ"><ul><li><strong>Design and manufacture chips (Terafab)</strong></li><li>Tesla joined March 2026; Intel joined April 2026</li><li>Goal: 1 terawatt of compute hardware/year; chips optimized for space</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"We announced a collaboration with Tesla in March 2026 to build the Terafab initiative with a long-term goal of producing one terawatt of compute hardware each year. Intel joined the project in April 2026 and is expected to contribute its expertise in designing, fabricating, and packaging ultra-high performance chips to help Terafab scale." "With this internal manufacturing capability, we plan to alleviate potential future chip shortages at SpaceX, especially as we develop orbital AI at scale, and design chips that are optimized for the space environment."</div></div>
       </div>
@@ -917,7 +919,7 @@ footer {
 
     <div class="li"><div class="li-dot"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Grow Grok and X monetization.</strong> Cursor compute agreement (April 2026) gives SpaceX workloads from a high-frequency developer platform, with an option to acquire Cursor at a $60B implied equity value. Anthropic pays $1.25B/month for Colossus compute access through May 2029.</div>
+        <div class="summ"><ul><li><strong>Grow Grok and X monetization</strong></li><li>Cursor compute deal (April 2026); option to acquire at $60B implied equity</li><li>Anthropic pays $1.25B/month for Colossus compute through May 2029</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"In April 2026, we entered into a compute and option agreement with Anysphere, Inc., doing business as Cursor… we view as a compelling extension of our strategy to vertically integrate compute infrastructure, models, and applications." "The consideration for the acquisition of Cursor, if any, after the closing of this offering would consist of shares of our Class A common stock based on an implied equity value of Cursor of $60.0 billion." "In May 2026, we entered into Cloud Services Agreements with Anthropic PBC… the customer has agreed to pay us $1.25 billion per month through May 2029."</div></div>
       </div>
@@ -925,7 +927,7 @@ footer {
 
     <div class="li"><div class="li-dot"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Establish the lunar economy.</strong> Cargo transport, manufacturing, and energy production on the Moon. SpaceX holds the NASA Human Landing System contract. A lunar presence is described as enabling terawatt-scale annual AI compute growth and serving as a stepping stone to Mars.</div>
+        <div class="summ"><ul><li><strong>Establish the lunar economy</strong></li><li>Holds the NASA Human Landing System contract</li><li>Enables terawatt-scale AI compute growth; stepping stone to Mars</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"We believe our goal of establishing a lunar presence will enable terawatt-scale annual AI compute growth, support deeper space exploration and industrialization, and serve as a stepping stone to establishing a civilization on Mars." "Establishing the lunar economy, including cargo transport, manufacturing, and energy production on the Moon" is listed as a stated growth strategy in the S-1.</div></div>
       </div>
@@ -933,7 +935,7 @@ footer {
 
     <div class="li"><div class="li-dot"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Point-to-point terrestrial travel (Future Market).</strong> Starship as a city-to-city transport vehicle. Does not yet exist commercially. Economics dependent on achieving full reusability and high launch cadence.</div>
+        <div class="summ"><ul><li><strong>Point-to-point terrestrial travel</strong> (Future Market — not commercial yet)</li><li>Starship as city-to-city transport</li><li>Requires full reusability and high cadence to be economic</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Point-to-point terrestrial travel" is listed explicitly in the S-1 as a Future Market. "A portion of our anticipated market opportunities is associated with industries described above under Future Markets. Certain of these industries… are still emerging. Others… do not exist today. While we believe these industries will develop over time, the manner in which they emerge… may differ materially from our current expectations."</div></div>
       </div>
@@ -941,7 +943,7 @@ footer {
 
     <div class="li"><div class="li-dot"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Asteroid mining, in-orbit manufacturing, Mars transport (Future Markets).</strong> All listed in the S-1 as future market opportunities. None exist commercially today. Timelines described as "difficult or impossible to determine."</div>
+        <div class="summ"><ul><li><strong>Asteroid mining, in-orbit manufacturing, Mars transport</strong> (Future Markets)</li><li>None exist commercially today</li><li>Timelines described as "difficult or impossible to determine"</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Others, including in-orbit manufacturing, passenger transport to the Moon, passenger and cargo transport to Mars, energy production on the Moon and Mars, manufacturing capabilities on the Moon and Mars, and asteroid mining, do not exist today." "The timeline for certain of our initiatives involving unproven or new innovations, including our goal of deploying 100 gigawatts of annual compute power to orbit, the establishment of a lunar economy and interplanetary industrialization, and the launch cadence required to achieve these goals may be difficult or impossible to determine."</div></div>
       </div>
@@ -960,7 +962,7 @@ footer {
 
     <div class="li"><div class="li-dot red"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Starship development risk.</strong> All major growth initiatives — V3 satellites, orbital AI, lunar missions — depend on Starship. A delay cascades across the entire strategy. FAA currently does not permit RTLS reentries for Starship.</div>
+        <div class="summ"><ul><li><strong>Starship development risk</strong></li><li>V3 satellites, orbital AI, and lunar missions all depend on Starship</li><li>Any delay cascades across the entire growth strategy</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Any failure or delay in the development of Starship at scale or in achieving the required launch cadence, reusability and capabilities thereafter would delay or limit our ability to execute our growth strategy, including the deployment of next-generation satellites, global satellite-to-mobile connectivity, and orbital AI compute, which could materially adversely affect our business, financial condition, results of operations, and future prospects."</div></div>
       </div>
@@ -968,7 +970,7 @@ footer {
 
     <div class="li"><div class="li-dot red"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Launch delays and failures.</strong> SpaceX carries no insurance on satellites, payloads, or launch vehicles, bearing the full financial cost of any loss. Repeated failures could trigger regulatory restrictions on cadence.</div>
+        <div class="summ"><ul><li><strong>Launch delays and failures</strong></li><li>No insurance on satellites, payloads, or launch vehicles — full cost borne internally</li><li>Repeated failures could trigger regulatory restrictions on launch cadence</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"We have experienced, and will likely continue to experience, launch delays and failures that could have a material adverse effect on our business, financial condition, results of operations, and future prospects." "We do not typically obtain insurance coverage for our satellites, payloads, or launch vehicles, and as a result we bear the full financial cost of any such losses."</div></div>
       </div>
@@ -976,7 +978,7 @@ footer {
 
     <div class="li"><div class="li-dot red"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Regulatory approvals.</strong> FAA launch licenses, FCC spectrum, country-by-country telecom authorizations. Current FAA regulations do not allow return-to-launch-site reentries for Starship — a waiver is required and not guaranteed.</div>
+        <div class="summ"><ul><li><strong>Regulatory approvals</strong></li><li>FAA launch licenses, FCC spectrum, country-by-country telecom authorizations</li><li>FAA waiver required for Starship RTLS reentries — not guaranteed</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Any delays or difficulties in obtaining, maintaining or renewing required regulatory approvals and licenses required for our space-related activities, including the U.S. Federal Aviation Administration launch and reentry licenses, would materially delay or disrupt our operations, harm our business, or limit our ability to execute our business strategy." "Current FAA regulations do not permit return-to-launch-site reentries for Starship, requiring us to obtain a waiver from the FAA, which is not guaranteed."</div></div>
       </div>
@@ -984,7 +986,7 @@ footer {
 
     <div class="li"><div class="li-dot red"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Substantial indebtedness.</strong> SpaceX Bridge Loan: $20B outstanding as of April 30, 2026, maturing September 2027. Amended Credit Facility: up to $5B, terminating May 2031. Debt covenants restrict dividend payments.</div>
+        <div class="summ"><ul><li><strong>Substantial indebtedness</strong></li><li>$20B Bridge Loan outstanding (April 30, 2026); matures September 2027</li><li>$5B Credit Facility terminates May 2031; covenants restrict dividends</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Our substantial level of indebtedness could materially adversely affect our financial condition." As of April 30, 2026: $20,000 million outstanding under the SpaceX Bridge Loan, maturing September 2, 2027. The Amended SpaceX Credit Facility provides up to $5,000 million, terminating May 19, 2031. "Covenants under our Credit Agreements also restrict our ability to pay dividends."</div></div>
       </div>
@@ -992,7 +994,7 @@ footer {
 
     <div class="li"><div class="li-dot red"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Voting control concentration.</strong> Musk controls majority voting power through Class B shares (10 votes each). Public shareholders cannot elect directors or block major decisions. SpaceX is a controlled company under Nasdaq rules.</div>
+        <div class="summ"><ul><li><strong>Voting control concentration</strong></li><li>Musk controls majority voting power via Class B shares (10 votes each)</li><li>Public shareholders cannot elect directors or block major decisions</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Mr. Musk will have the power to control the outcome of matters requiring shareholder approval, including election of all our directors, and to control our business and affairs." "Under our charter, the holders of our Class B common stock will have the right to elect a majority of our board… for so long as any shares of Class B common stock remain outstanding." Each share of Class B carries 10 votes vs. 1 vote for Class A.</div></div>
       </div>
@@ -1000,7 +1002,7 @@ footer {
 
     <div class="li"><div class="li-dot red"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Capital requirements.</strong> Q1 2026 capex was $10.1B vs. $4.7B revenue. Full-year 2025 capex was $20.7B vs. $6.8B operating cash flow. Financing at scale requires continued access to capital markets on acceptable terms.</div>
+        <div class="summ"><ul><li><strong>Capital requirements</strong></li><li>Q1 2026: $10.1B capex vs. $4.7B revenue</li><li>FY 2025: $20.7B capex vs. $6.8B operating cash flow</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"The development and maintenance of the technologies and infrastructure necessary to support our current and future operations will require significant capital expenditures, and if we are unable to generate sufficient cash flow from operations or obtain additional financing on acceptable terms, our business, financial condition, results of operations, and future prospects could be materially and adversely affected."</div></div>
       </div>
@@ -1008,7 +1010,7 @@ footer {
 
     <div class="li"><div class="li-dot gold"></div>
       <div class="toggleable">
-        <div class="summ"><strong>AI segment early stage.</strong> xAI merger was February 2026. Business strategy still being developed. Requires significant capital for compute infrastructure, power, model training, and product development.</div>
+        <div class="summ"><ul><li><strong>AI segment early stage</strong></li><li>xAI merger February 2026; business strategy still developing</li><li>Requires heavy capital for compute, power, model training, and product dev</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Our AI business is in a relatively early stage, it is being integrated into our organization, its business strategy is still developing, and it will require significant capital expenditures to fund compute, infrastructure and power generation, model training, and product development. Additionally, our AI business is subject to challenges inherent in a nascent, highly competitive, capital intensive and rapidly changing industry."</div></div>
       </div>
@@ -1016,7 +1018,7 @@ footer {
 
     <div class="li"><div class="li-dot gold"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Space environment risks.</strong> Orbital AI compute, once deployed, cannot be serviced or repaired. Component failures mean permanent capacity loss. Space weather events can permanently damage hardware. Satellites have shorter useful lives than the compute infrastructure they host.</div>
+        <div class="summ"><ul><li><strong>Space environment risks</strong></li><li>Orbital AI compute cannot be serviced or repaired once deployed</li><li>Component failures = permanent capacity loss; space weather can damage hardware</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Orbital AI compute infrastructure will not be readily accessible, and as a result, will not be easily repaired or upgraded, such that any component failures could result in permanent capacity loss, accelerated depreciation, decommissioning or need for replacement of the infrastructure." "We have not, and no one else has, previously operated or attempted to operate orbital AI compute, and the conditions of space on such AI infrastructure have not been tested."</div></div>
       </div>
@@ -1024,7 +1026,7 @@ footer {
 
     <div class="li"><div class="li-dot gold"></div>
       <div class="toggleable">
-        <div class="summ"><strong>AI regulation.</strong> Subject to GDPR, EU AI Act, FTC inquiries, Irish DPC investigation (launched February 2026), and evolving state AI laws across the US. Content moderation requirements on X vary by country and continue to evolve.</div>
+        <div class="summ"><ul><li><strong>AI regulation</strong></li><li>GDPR, EU AI Act, FTC; Irish DPC inquiry launched February 2026</li><li>Content moderation requirements on X vary by country and continue to evolve</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Our AI products and X platform are subject to complex and evolving U.S. and foreign laws and regulations that are subject to change and uncertain interpretation." "In February 2026, the Irish Data Protection Commission, our AI segment's privacy regulator in Europe, launched a large-scale inquiry to determine whether our AI segment has complied with its obligations under the European Union's General Data Protection Regulation."</div></div>
       </div>
@@ -1032,7 +1034,7 @@ footer {
 
     <div class="li"><div class="li-dot gold"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Spectrum and communications licenses.</strong> Satellite connectivity requires country-by-country authorizations that can be delayed, denied, or conditioned. Spectrum access is limited and highly regulated globally, including through the ITU coordination process.</div>
+        <div class="summ"><ul><li><strong>Spectrum and communications licenses</strong></li><li>Country-by-country telecom authorizations — can be delayed or denied</li><li>Spectrum access coordinated through the ITU; limited and highly regulated</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"Any delays or difficulties in obtaining, maintaining or renewing required communications licenses and spectrum authorizations for our satellite connectivity services, including international and FCC satellite spectrum licenses, could materially delay or disrupt our operations." "Spectrum access itself is limited and highly regulated. Our rights to use certain frequencies are coordinated through the International Telecommunication Union and are subject to international agreements to prevent harmful interference."</div></div>
       </div>
@@ -1069,7 +1071,7 @@ footer {
 
     <div class="li"><div class="li-dot"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Controlled company status.</strong> Musk will beneficially own a majority of the voting power at IPO close. Not required to have a majority-independent board or independent compensation and nominating committees.</div>
+        <div class="summ"><ul><li><strong>Controlled company status</strong></li><li>Musk beneficially owns majority voting power at IPO close</li><li>Not required to have a majority-independent board or independent committees</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"We will be a controlled company as of the completion of this offering under Nasdaq and Nasdaq Texas listing rules. A controlled company is not required to have a majority of its board composed of independent directors or to establish independent compensation and nominating committees. As a controlled company, we will remain subject to rules that require us to have an audit committee composed entirely of independent directors."</div></div>
       </div>
@@ -1077,7 +1079,7 @@ footer {
 
     <div class="li"><div class="li-dot"></div>
       <div class="toggleable">
-        <div class="summ"><strong>xAI and X mergers.</strong> xAI acquisition effective February 2, 2026. X Holdings acquired by xAI effective March 28, 2025. Both retroactively combined into SpaceX financials for all periods presented. Five-for-one stock split effective May 4, 2026.</div>
+        <div class="summ"><ul><li><strong>xAI and X mergers</strong></li><li>xAI acquired by SpaceX: February 2, 2026; X Holdings by xAI: March 28, 2025</li><li>Financials retroactively recast for all periods; 5-for-1 split effective May 4, 2026</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"The consolidated financial statements of SpaceX have been retrospectively recast for all periods presented to include (i) the historical results of X.AI Holdings Corp., which was acquired by SpaceX, effective February 2, 2026, and X Holdings Corp., which was acquired by xAI, effective March 28, 2025, because these transactions were between entities under common control, and (ii) a five-for-one stock split of the Company's Class A, Class B, and Class C Common Stock, effective May 4, 2026."</div></div>
       </div>
@@ -1085,7 +1087,7 @@ footer {
 
     <div class="li"><div class="li-dot"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Use of proceeds.</strong> IPO capital directed to AI compute infrastructure expansion, launch infrastructure, satellite constellation growth, and general corporate purposes.</div>
+        <div class="summ"><ul><li><strong>Use of proceeds</strong></li><li>AI compute infrastructure, launch infrastructure, satellite constellation growth</li><li>Remainder for general corporate purposes</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"We intend to use the net proceeds from this offering to fund our growth strategy, including the expansion of our AI compute infrastructure, enhancements to our launch infrastructure and launch vehicles, increases in the scale and capacity of our satellite constellations, and any remaining amounts for general corporate purposes."</div></div>
       </div>
@@ -1093,7 +1095,7 @@ footer {
 
     <div class="li"><div class="li-dot"></div>
       <div class="toggleable">
-        <div class="summ"><strong>Dividend policy.</strong> No cash dividends anticipated in the foreseeable future. All earnings retained for growth. Debt covenants also restrict dividend payments.</div>
+        <div class="summ"><ul><li><strong>Dividend policy</strong></li><li>No cash dividends anticipated in the foreseeable future</li><li>All earnings retained for growth; debt covenants also restrict dividends</li></ul></div>
         <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
         <div class="qrev"><div class="qrev-inner">"We do not anticipate declaring or paying any cash dividends to holders of our common stock in the foreseeable future. We currently intend to retain future earnings, if any, to finance the growth of our business." "Covenants under our Credit Agreements also restrict our ability to pay dividends, and we may enter into credit agreements or other borrowing arrangements in the future that restrict our ability to declare or pay cash dividends or make distributions in the future."</div></div>
       </div>
