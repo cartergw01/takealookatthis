@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpaceX — S-1 · May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #00000f;
+  --border: rgba(80,80,180,0.15);
+  --border-light: rgba(100,100,220,0.25);
+  --muted: #4a4a7a;
+  --secondary: #8888bb;
+  --tertiary: #aaaacb;
+  --primary: #e8e8ff;
+  --accent: #7eb8ff;
+  --accent2: #b36bff;
+  --green: #00ffb3;
+  --red: #ff5270;
+  --gold: #ffc864;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--primary);
+  font-family: 'Inter', 'Space Grotesk', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#starfield { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+.nebula-layer { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+
+.nb {
+  position: absolute; border-radius: 50%; filter: blur(90px);
+  animation: ndrift 50s ease-in-out infinite alternate;
+}
+.nb:nth-child(1) { width: 800px; height: 600px; top: -150px; left: -200px; background: radial-gradient(ellipse, rgba(90,30,200,0.16) 0%, transparent 70%); animation-duration: 48s; }
+.nb:nth-child(2) { width: 700px; height: 900px; top: 15%; right: -200px; background: radial-gradient(ellipse, rgba(30,80,210,0.13) 0%, transparent 70%); animation-duration: 58s; animation-delay: -18s; }
+.nb:nth-child(3) { width: 1000px; height: 600px; bottom: 5%; left: 10%; background: radial-gradient(ellipse, rgba(160,25,120,0.09) 0%, transparent 70%); animation-duration: 52s; animation-delay: -28s; }
+.nb:nth-child(4) { width: 500px; height: 600px; top: 55%; left: -80px; background: radial-gradient(ellipse, rgba(20,130,210,0.11) 0%, transparent 70%); animation-duration: 62s; animation-delay: -8s; }
+.nb:nth-child(5) { width: 600px; height: 800px; top: 25%; left: 35%; background: radial-gradient(ellipse, rgba(100,0,200,0.07) 0%, transparent 70%); animation-duration: 72s; animation-delay: -40s; }
+.nb:nth-child(6) { width: 400px; height: 400px; top: 70%; right: 10%; background: radial-gradient(ellipse, rgba(180,60,80,0.07) 0%, transparent 70%); animation-duration: 44s; animation-delay: -12s; }
+
+@keyframes ndrift {
+  0%   { transform: translate(0,0) scale(1); }
+  25%  { transform: translate(50px,-40px) scale(1.06); }
+  50%  { transform: translate(-30px,60px) scale(0.96); }
+  75%  { transform: translate(40px,30px) scale(1.04); }
+  100% { transform: translate(-20px,-20px) scale(1.02); }
+}
+
+nav, .hero, .ticker-strip, section, footer { position: relative; z-index: 2; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(2,2,18,0.82); backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border-light);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 56px; height: 56px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 16px;
+  font-weight: 900; font-size: 18px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--primary); text-shadow: 0 0 30px rgba(126,184,255,0.45);
+}
+.nav-badge {
+  font-size: 10px; letter-spacing: 0.12em; color: var(--secondary);
+  border: 1px solid var(--border-light); padding: 3px 10px; border-radius: 2px;
+  text-transform: uppercase; background: rgba(126,184,255,0.04); font-weight: 400;
+}
+.nav-right { display: flex; gap: 36px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
+.nav-right a { color: var(--secondary); text-decoration: none; transition: color 0.2s, text-shadow 0.2s; }
+.nav-right a:hover { color: var(--accent); text-shadow: 0 0 14px rgba(126,184,255,0.6); }
+
+/* HERO */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: 130px 92px 110px; overflow: hidden;
+}
+.hero-eyebrow {
+  font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 30px; font-weight: 500;
+  text-shadow: 0 0 20px rgba(126,184,255,0.7);
+}
+.hero-title {
+  font-size: clamp(54px, 8.5vw, 108px);
+  font-weight: 900; line-height: 0.92; letter-spacing: -0.045em;
+  margin-bottom: 36px; max-width: 1050px;
+}
+.hero-title .solid { text-shadow: 0 0 80px rgba(126,184,255,0.35), 0 0 160px rgba(126,184,255,0.12); }
+.hero-title .outline { color: transparent; -webkit-text-stroke: 1px rgba(180,180,255,0.28); }
+.hero-quote {
+  font-size: 15px; font-style: italic; font-weight: 300;
+  color: var(--tertiary); max-width: 700px; line-height: 1.75;
+  margin-bottom: 56px; border-left: 2px solid rgba(126,184,255,0.4); padding-left: 20px;
+}
+.hero-metrics { display: flex; gap: 64px; align-items: flex-end; }
+.hero-metric-value { font-size: 50px; font-weight: 700; letter-spacing: -0.055em; line-height: 1; }
+.hero-metric-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+.hero-metric-sub { font-size: 11px; margin-top: 3px; font-weight: 500; }
+.divider-h { width: 1px; height: 72px; background: var(--border-light); }
+.scroll-hint {
+  position: absolute; bottom: 44px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: var(--muted); font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+  animation: bounce 2.8s ease-in-out infinite; z-index: 2;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.5; }
+  50% { transform: translateX(-50%) translateY(10px); opacity: 1; }
+}
+
+/* TICKER */
+.ticker-strip {
+  background: rgba(4,4,18,0.9); border-bottom: 1px solid var(--border);
+  padding: 11px 92px; display: flex; gap: 56px; font-size: 11px;
+  letter-spacing: 0.1em; overflow: hidden; backdrop-filter: blur(14px);
+}
+.ticker-item { display: flex; gap: 12px; align-items: center; white-space: nowrap; }
+.ticker-key { color: var(--muted); text-transform: uppercase; font-size: 10px; }
+.ticker-val { color: var(--primary); font-weight: 600; }
+.ticker-chg { color: var(--green); text-shadow: 0 0 8px rgba(0,255,179,0.4); }
+
+/* SECTIONS */
+section { padding: 110px 92px; border-top: 1px solid var(--border); position: relative; overflow: hidden; }
+section::after {
+  content: ''; position: absolute; pointer-events: none;
+  border-radius: 50%; filter: blur(130px); opacity: 0.6;
+}
+section:nth-child(odd)::after  { width: 700px; height: 450px; top: -120px; right: -120px; background: radial-gradient(ellipse, rgba(90,30,200,0.11) 0%, transparent 70%); }
+section:nth-child(even)::after { width: 700px; height: 450px; bottom: -120px; left: -120px; background: radial-gradient(ellipse, rgba(30,80,200,0.11) 0%, transparent 70%); }
+
+.section-eyebrow { font-size: 10px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; text-shadow: 0 0 16px rgba(126,184,255,0.5); }
+.section-title { font-size: clamp(34px, 4.5vw, 58px); font-weight: 900; letter-spacing: -0.037em; line-height: 1.07; margin-bottom: 20px; }
+.section-sub { font-size: 14px; color: var(--tertiary); font-weight: 300; max-width: 680px; line-height: 1.8; margin-bottom: 64px; font-style: italic; }
+
+/* QUOTE BLOCK */
+.qblock {
+  border-left: 2px solid var(--accent); padding: 26px 40px; margin: 48px 0;
+  background: rgba(8,8,28,0.62); backdrop-filter: blur(14px);
+}
+.qblock p { font-size: 18px; font-weight: 300; font-style: italic; line-height: 1.68; color: var(--tertiary); margin-bottom: 12px; }
+.qblock cite { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); font-style: normal; }
+
+/* ── TOGGLE PATTERN ── */
+.toggleable { display: flex; flex-direction: column; }
+
+.summ { font-size: 13px; color: var(--secondary); line-height: 1.72; }
+
+.qbtn {
+  display: inline-flex; align-items: center; gap: 5px;
+  margin-top: 11px; padding: 0; background: none; border: none; cursor: pointer;
+  font-size: 10px; font-family: inherit; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); opacity: 0.6; transition: opacity 0.2s;
+}
+.qbtn:hover { opacity: 1; }
+.qbtn svg { transition: transform 0.3s ease; flex-shrink: 0; }
+.toggleable.open .qbtn svg { transform: rotate(180deg); }
+.toggleable.open .qbtn { opacity: 1; }
+
+.qrev {
+  max-height: 0; overflow: hidden; opacity: 0;
+  transition: max-height 0.38s ease, opacity 0.3s ease, margin-top 0.3s ease;
+  margin-top: 0;
+}
+.toggleable.open .qrev {
+  max-height: 600px; opacity: 1; margin-top: 14px;
+}
+.qrev-inner {
+  font-size: 12.5px; font-style: italic; color: var(--tertiary); line-height: 1.75;
+  border-left: 1px solid rgba(126,184,255,0.25); padding-left: 14px;
+}
+
+/* li toggleable adjustments */
+.li .toggleable .summ { font-size: 13px; }
+.li .toggleable .qrev-inner { font-size: 12px; }
+
+/* card body toggleable */
+.card-body.toggleable .summ { font-size: 13.5px; color: var(--secondary); line-height: 1.78; }
+
+/* seg desc toggleable */
+.seg-desc .summ { font-size: 13px; }
+
+/* fw-cell p toggleable */
+.fw-cell .toggleable .summ { font-size: 13px; }
+
+/* CARD BASE */
+.card {
+  background: rgba(8,8,28,0.88); border: 1px solid var(--border-light);
+  backdrop-filter: blur(14px); position: relative; overflow: hidden;
+  transition: border-color 0.3s;
+}
+.card:hover { border-color: rgba(126,184,255,0.38); }
+.card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at top left, rgba(126,184,255,0.03) 0%, transparent 65%); pointer-events: none; }
+
+/* GRIDS */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); }
+.grid-2 > * { background: rgba(7,7,24,0.95); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+/* METRICS STRIP */
+.metrics-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border-light); margin-bottom: 32px; }
+.metric-cell { background: rgba(6,6,22,0.95); padding: 44px 26px; text-align: center; position: relative; overflow: hidden; }
+.metric-cell::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center top, rgba(126,184,255,0.04) 0%, transparent 70%); pointer-events: none; }
+.metric-val { font-size: 52px; font-weight: 900; letter-spacing: -0.06em; line-height: 1; margin-bottom: 10px; }
+.metric-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--secondary); }
+.metric-period { font-size: 10px; color: var(--muted); margin-top: 5px; }
+
+/* OVERVIEW CARD */
+.overview-card { padding: 52px; position: relative; transition: background 0.3s; }
+.overview-card:hover { background: rgba(10,10,32,0.97) !important; }
+.overview-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 60%, transparent 100%); }
+.card-num { font-size: 88px; font-weight: 900; color: rgba(80,80,180,0.09); letter-spacing: -0.07em; line-height: 1; margin-bottom: 24px; }
+.card-title { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 14px; color: var(--primary); }
+
+/* SEGMENT CARD */
+.seg-card { padding: 44px 36px; }
+.seg-card .glow-orb { position: absolute; bottom: -70px; right: -70px; width: 220px; height: 220px; border-radius: 50%; filter: blur(35px); pointer-events: none; }
+.seg-card:nth-child(1) .glow-orb { background: radial-gradient(ellipse, rgba(126,184,255,0.10) 0%, transparent 70%); }
+.seg-card:nth-child(2) .glow-orb { background: radial-gradient(ellipse, rgba(0,255,179,0.08) 0%, transparent 70%); }
+.seg-card:nth-child(3) .glow-orb { background: radial-gradient(ellipse, rgba(179,107,255,0.09) 0%, transparent 70%); }
+.seg-icon { font-size: 32px; margin-bottom: 22px; display: block; filter: drop-shadow(0 0 14px rgba(126,184,255,0.4)); }
+.seg-name { font-size: 24px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 5px; }
+.seg-sub { font-size: 10px; font-weight: 500; margin-bottom: 20px; letter-spacing: 0.08em; text-transform: uppercase; }
+.seg-desc { margin-bottom: 28px; }
+.stat-list { display: flex; flex-direction: column; }
+.stat-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+.stat-row:last-child { border-bottom: none; }
+.stat-key { color: var(--muted); letter-spacing: 0.04em; }
+.stat-val { font-weight: 600; font-size: 13px; }
+
+/* CHART */
+.chart-wrap { background: rgba(8,8,28,0.88); border: 1px solid var(--border-light); padding: 44px; backdrop-filter: blur(14px); }
+.chart-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--secondary); margin-bottom: 36px; }
+.bar-chart { display: flex; align-items: flex-end; gap: 18px; height: 190px; }
+.bar-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%; justify-content: flex-end; }
+.bar-chart-label { font-size: 10px; color: var(--muted); letter-spacing: 0.1em; }
+.bar-chart-val { font-size: 11px; color: var(--tertiary); font-weight: 600; }
+.bar { width: 100%; background: linear-gradient(to top, rgba(26,74,138,0.85) 0%, rgba(126,184,255,0.92) 100%); border-radius: 2px 2px 0 0; min-height: 4px; box-shadow: 0 0 20px rgba(126,184,255,0.18); transition: box-shadow 0.3s; }
+.bar:hover { box-shadow: 0 0 32px rgba(126,184,255,0.38); }
+.bar.dim { background: linear-gradient(to top, rgba(26,74,138,0.45) 0%, rgba(126,184,255,0.5) 100%); box-shadow: 0 0 14px rgba(126,184,255,0.10); }
+
+/* KPI */
+.kpi-stack { display: flex; flex-direction: column; gap: 16px; }
+.kpi-card { background: rgba(8,8,28,0.88); border: 1px solid var(--border-light); padding: 22px 26px; backdrop-filter: blur(14px); transition: border-color 0.3s; }
+.kpi-card:hover { border-color: rgba(126,184,255,0.3); }
+.kpi-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.kpi-val { font-size: 26px; font-weight: 700; letter-spacing: -0.04em; }
+.kpi-note { font-size: 11px; color: var(--green); margin-top: 4px; }
+.kpi-note.neg { color: var(--red); }
+.fin-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 28px; }
+
+/* TABLE */
+.data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 36px; }
+.data-table th { text-align: right; padding: 11px 16px; border-bottom: 1px solid var(--border-light); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 500; background: rgba(8,8,28,0.5); }
+.data-table th:first-child { text-align: left; }
+.data-table td { text-align: right; padding: 11px 16px; border-bottom: 1px solid var(--border); color: var(--secondary); }
+.data-table td:first-child { text-align: left; color: var(--primary); font-weight: 500; }
+.data-table tr:hover td { background: rgba(126,184,255,0.022); }
+.data-table .hl td { background: rgba(126,184,255,0.038); color: var(--primary); font-weight: 600; }
+.pos { color: var(--green) !important; text-shadow: 0 0 8px rgba(0,255,179,0.28); }
+.neg-val { color: var(--red) !important; }
+
+/* TAM */
+.tam-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.tam-total { font-size: 96px; font-weight: 900; letter-spacing: -0.07em; line-height: 0.88; margin-bottom: 14px; background: linear-gradient(135deg, #e8e8ff 0%, #7eb8ff 40%, #b36bff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 40px rgba(126,184,255,0.28)); }
+.tam-sub { font-size: 13px; color: var(--secondary); font-weight: 300; margin-bottom: 52px; font-style: italic; }
+.tam-bars { display: flex; flex-direction: column; gap: 20px; }
+.tam-bar-row { display: flex; flex-direction: column; gap: 7px; }
+.tam-bar-hd { display: flex; justify-content: space-between; font-size: 12px; }
+.tam-bar-name { color: var(--tertiary); font-weight: 500; }
+.tam-bar-amt { color: var(--primary); font-weight: 700; }
+.tam-bar-track { height: 3px; background: rgba(80,80,180,0.18); border-radius: 2px; overflow: hidden; }
+.tam-bar-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, #1a4a8a 0%, #7eb8ff 55%, #b36bff 100%); box-shadow: 0 0 8px rgba(126,184,255,0.45); }
+.tam-breakdown { padding: 36px; background: rgba(8,8,28,0.88); border: 1px solid var(--border-light); backdrop-filter: blur(14px); }
+.tam-breakdown h4 { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
+.tam-row { display: flex; justify-content: space-between; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.tam-row:last-child { border-bottom: none; }
+.tam-row-name { color: var(--secondary); }
+.tam-row-val { font-weight: 700; color: var(--primary); }
+
+/* FLYWHEEL */
+.flywheel { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
+.fw-cell { background: rgba(6,6,22,0.95); padding: 46px; position: relative; overflow: hidden; transition: background 0.3s; }
+.fw-cell:hover { background: rgba(10,10,32,0.98); }
+.fw-cell::before { content: attr(data-num); position: absolute; top: 18px; right: 18px; font-size: 88px; font-weight: 900; color: rgba(80,80,180,0.07); letter-spacing: -0.07em; line-height: 1; }
+.fw-cell::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--accent2) 0%, var(--accent) 50%, transparent 100%); opacity: 0.45; }
+.fw-cell h3 { font-size: 15px; font-weight: 700; margin-bottom: 13px; color: var(--primary); letter-spacing: -0.01em; }
+
+/* LIST */
+.list-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.li {
+  display: flex; align-items: flex-start; gap: 14px; padding: 18px;
+  background: rgba(8,8,28,0.72); border: 1px solid var(--border);
+  font-size: 13px; color: var(--secondary); line-height: 1.62;
+  backdrop-filter: blur(8px); transition: border-color 0.3s;
+}
+.li:hover { border-color: var(--border-light); }
+.li-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; box-shadow: 0 0 8px rgba(126,184,255,0.6); }
+.li-dot.red { background: var(--red); box-shadow: 0 0 8px rgba(255,82,112,0.55); }
+.li-dot.gold { background: var(--gold); box-shadow: 0 0 8px rgba(255,200,100,0.45); }
+.li .toggleable .summ strong { color: var(--primary); }
+
+/* CAPEX */
+.capex-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 36px; }
+.capex-card { background: rgba(8,8,28,0.88); border: 1px solid var(--border-light); padding: 36px; backdrop-filter: blur(14px); transition: border-color 0.3s; }
+.capex-card:hover { border-color: rgba(126,184,255,0.32); }
+.capex-seg { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--secondary); margin-bottom: 18px; }
+.capex-val { font-size: 40px; font-weight: 900; letter-spacing: -0.055em; margin-bottom: 4px; }
+.capex-period { font-size: 11px; color: var(--muted); }
+.capex-note { font-size: 12px; color: var(--gold); margin-top: 10px; line-height: 1.5; }
+
+/* COLORS */
+.c-accent  { color: var(--accent); }
+.c-accent2 { color: var(--accent2); }
+.c-green   { color: var(--green); }
+.c-gold    { color: var(--gold); }
+.c-red     { color: var(--red); }
+.c-muted   { color: var(--secondary); }
+.glow-blue   { text-shadow: 0 0 32px rgba(126,184,255,0.48), 0 0 70px rgba(126,184,255,0.18); }
+.glow-purple { text-shadow: 0 0 32px rgba(179,107,255,0.48), 0 0 70px rgba(179,107,255,0.18); }
+.glow-green  { text-shadow: 0 0 22px rgba(0,255,179,0.48); }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border); padding: 44px 92px;
+  display: flex; justify-content: space-between; align-items: center;
+  color: var(--muted); font-size: 11px; letter-spacing: 0.08em;
+  background: rgba(2,2,14,0.95); backdrop-filter: blur(22px);
+}
+
+/* TABLE SCROLL */
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table-scroll .data-table { min-width: 640px; }
+
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-right { gap: 20px; font-size: 10px; }
+  section { padding: 60px 20px; }
+  .hero { padding: 100px 20px 60px; }
+  .grid-2, .grid-3, .flywheel, .capex-grid, .list-2col, .tam-grid, .fin-grid { grid-template-columns: 1fr; }
+  .metrics-strip { grid-template-columns: repeat(2, 1fr); }
+  .hero-metrics { flex-wrap: wrap; gap: 32px; }
+  .divider-h { display: none; }
+  footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 20px; }
+  .ticker-strip { padding: 10px 20px; flex-wrap: wrap; gap: 12px; }
+  .overview-card { padding: 36px 24px; }
+  .fw-cell { padding: 32px 26px; }
+  .qbtn { min-height: 44px; }
+  .tam-total { font-size: clamp(52px, 14vw, 96px); }
+}
+
+@media (max-width: 600px) {
+  .nav-right { display: none; }
+  nav { height: 50px; }
+  .nav-logo { font-size: 15px; letter-spacing: 0.2em; }
+  .hero { padding: 78px 18px 52px; }
+  .hero-title { font-size: clamp(38px, 11vw, 64px); }
+  .hero-metric-value { font-size: 36px; }
+  .hero-metrics { gap: 24px; }
+  section { padding: 52px 18px; }
+  .section-title { font-size: clamp(26px, 8vw, 44px); }
+  .section-sub { margin-bottom: 40px; }
+  .metric-val { font-size: 36px; }
+  .capex-val { font-size: 30px; }
+  .capex-card { padding: 24px 18px; }
+  .kpi-val { font-size: 22px; }
+  .kpi-card { padding: 18px 20px; }
+  .qblock { padding: 18px 20px; }
+  .qblock p { font-size: 14px; }
+  .card-num { font-size: 64px; }
+  .fw-cell { padding: 26px 20px; }
+  .fw-cell::before { font-size: 64px; }
+  .li { padding: 14px; }
+  .tam-total { font-size: clamp(44px, 14vw, 72px); }
+  footer { padding: 28px 18px; font-size: 10px; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+<div class="nebula-layer">
+  <div class="nb"></div><div class="nb"></div><div class="nb"></div>
+  <div class="nb"></div><div class="nb"></div><div class="nb"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SPACEX <span class="nav-badge">S-1 · May 2026</span></div>
+  <div class="nav-right">
+    <a href="#overview">Overview</a>
+    <a href="#segments">Segments</a>
+    <a href="#financials">Financials</a>
+    <a href="#tam">Market</a>
+    <a href="#strengths">Strengths</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">NASDAQ: SPCX &nbsp;·&nbsp; S-1 Registration Statement · Filed May 20, 2026</div>
+  <h1 class="hero-title">
+    <span class="solid">Making Life</span><br>
+    <span class="outline">Multiplanetary.</span>
+  </h1>
+  <p class="hero-quote">"Our mission is to build the systems and technologies necessary to make life multiplanetary, to understand the true nature of the universe, and to extend the light of consciousness to the stars."</p>
+  <div class="hero-metrics">
+    <div>
+      <div class="hero-metric-value c-accent glow-blue">$18.7B</div>
+      <div class="hero-metric-label">Revenue, FY 2025</div>
+      <div class="hero-metric-sub c-green">+33% year-over-year</div>
+    </div>
+    <div class="divider-h"></div>
+    <div>
+      <div class="hero-metric-value">10.3M</div>
+      <div class="hero-metric-label">Starlink Subscribers</div>
+      <div class="hero-metric-sub c-muted">164 countries · Q1 2026</div>
+    </div>
+    <div class="divider-h"></div>
+    <div>
+      <div class="hero-metric-value">80%+</div>
+      <div class="hero-metric-label">of Global Mass to Orbit</div>
+      <div class="hero-metric-sub c-muted">Since 2023 · 99%+ mission success</div>
+    </div>
+    <div class="divider-h"></div>
+    <div>
+      <div class="hero-metric-value c-accent2 glow-purple">$28.5T</div>
+      <div class="hero-metric-label">Quantifiable TAM</div>
+      <div class="hero-metric-sub" style="color:var(--accent2);">Space · Connectivity · AI</div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <svg width="12" height="18" viewBox="0 0 12 18" fill="none"><path d="M6 1v16M1 12l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Scroll
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-strip">
+  <div class="ticker-item"><span class="ticker-key">Revenue 2025</span><span class="ticker-val">$18.67B</span><span class="ticker-chg">+33.2%</span></div>
+  <div class="ticker-item"><span class="ticker-key">Q1 2026 Revenue</span><span class="ticker-val">$4.69B</span></div>
+  <div class="ticker-item"><span class="ticker-key">Starlink Subscribers</span><span class="ticker-val">10.3M</span><span class="ticker-chg">+106% YoY</span></div>
+  <div class="ticker-item"><span class="ticker-key">Connectivity Adj. EBITDA 2025</span><span class="ticker-val">$7.17B</span><span class="ticker-chg">+86%</span></div>
+  <div class="ticker-item"><span class="ticker-key">~9,600 Starlink Satellites in LEO</span></div>
+  <div class="ticker-item"><span class="ticker-key">Falcon 9 Max Refly</span><span class="ticker-val">34×</span></div>
+  <div class="ticker-item"><span class="ticker-key">AI CapEx Q1 2026</span><span class="ticker-val">$7.72B</span></div>
+  <div class="ticker-item"><span class="ticker-key">Orbital AI Compute Target</span><span class="ticker-val">2028</span></div>
+</div>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="section-eyebrow">Overview</div>
+  <h2 class="section-title">Why This Matters Now</h2>
+  <p class="section-sub">"We do not want humans to have the same fate as dinosaurs. We want to give them a reason to look ahead with excitement, with the prospect that we are entering an age of abundance with an endlessly prosperous and exciting future."</p>
+
+  <div class="grid-2">
+
+    <div class="overview-card">
+      <div class="card-num">01</div>
+      <div class="card-title">The Mission</div>
+      <div class="toggleable">
+        <div class="summ">The only company building integrated infrastructure across space, connectivity, and AI simultaneously. Designs, manufactures, launches, and operates rockets and spacecraft.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Founded in 2002, SpaceX is the only company building the integrated hardware and software infrastructure of the future across space, connectivity, and AI. At our core, we are builders. We design, manufacture, launch, and operate products and services built on cutting-edge technologies, including the world's most advanced rockets and spacecraft."</div></div>
+      </div>
+    </div>
+
+    <div class="overview-card">
+      <div class="card-num">02</div>
+      <div class="card-title">The Convergence</div>
+      <div class="toggleable">
+        <div class="summ">AI's compute demands are growing faster than terrestrial energy supply — US electricity generation grew less than 3%/year between 2023 and 2025 while AI data center demand surged, creating a resource constraint SpaceX believes only space can solve.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"The rapid emergence of the AI era intensifies the urgency of our mission, as AI has the potential to accelerate not only space exploration, but also transformative societal advancements on Earth. However, AI's ability to revolutionize human potential is directly dependent on meeting exponentially increasing resource demands… electricity generation in the United States has grown at an annual rate of less than 3% between 2023 and 2025, while electricity generation in China has grown at approximately twice that rate."</div></div>
+      </div>
+    </div>
+
+    <div class="overview-card">
+      <div class="card-num">03</div>
+      <div class="card-title">Space-Based Solar</div>
+      <div class="toggleable">
+        <div class="summ">Space-based solar arrays generate 5× more energy per unit area than ground-based equivalents due to continuous illumination and no atmospheric interference. SpaceX's satellite manufacturing and launch scale makes space-based solar economically accessible for the first time.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"The Sun contains approximately 99.8% of the solar system's energy and, as a result, we believe it is the only truly scalable solution to terrestrial energy constraints in the age of AI. Space-based solar arrays can generate more than five times the energy per unit area of terrestrial solar due to continuous illumination, lack of atmospheric interference, and optimal orientation."</div></div>
+      </div>
+    </div>
+
+    <div class="overview-card">
+      <div class="card-num">04</div>
+      <div class="card-title">The Next Paradigm</div>
+      <div class="toggleable">
+        <div class="summ">SpaceX frames a multiplanetary civilization as both an economic expansion opportunity and an existential necessity — establishing a lunar presence first, then Mars, ultimately reaching Kardashev Type II civilization status by harnessing the full energy of the Sun.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"We believe the next paradigm shift for humanity is the creation of a resilient, perpetually expanding spacefaring civilization that drives continuous innovation across new frontiers, ultimately propelling us to Kardashev Type II status — we believe we are capable of unlocking an era of unprecedented economic expansion, while also contributing to the safeguards of humanity's future against existential risk."</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SEGMENTS -->
+<section id="segments">
+  <div class="section-eyebrow">Our Leading Capabilities</div>
+  <h2 class="section-title">Space, Connectivity, and AI</h2>
+  <p class="section-sub">"SpaceX combines the most transformative and critical technologies in human history, including reusable rockets, a fully global internet service, satellite-to-mobile communications, a real-time information, entertainment and free speech platform, and a truth-seeking AI system designed to accelerate scientific discovery and augment human capabilities."</p>
+
+  <div class="grid-3">
+
+    <div class="card seg-card">
+      <div class="glow-orb"></div>
+      <span class="seg-icon">🚀</span>
+      <div class="seg-name">Space</div>
+      <div class="seg-sub c-accent">Falcon 9 · Falcon Heavy · Dragon · Starship</div>
+      <div class="seg-desc">
+        <div class="toggleable">
+          <div class="summ">SpaceX executes more than 80% of global mass to orbit annually since 2023, with a 99%+ mission success rate. Falcon 9 reduced cost to orbit ~85% vs. the historical average, according to NASA. All-time: ~650 orbital launches, ~7,400 metric tons delivered, single booster reflown up to 34 times.</div>
+          <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+          <div class="qrev"><div class="qrev-inner">"SpaceX is the only company that has cracked the code on accessing space at scale, revolutionizing an industry characterized by decades of stagnation, risk aversion, and economically perverse cost structures." According to NASA, Falcon 9 reduced launch cost to approximately $2,700 per kilogram — approximately 85% less than the historical average launch cost of $18,500 per kilogram.</div></div>
+        </div>
+      </div>
+      <div class="stat-list">
+        <div class="stat-row"><span class="stat-key">Launches, 2025</span><span class="stat-val c-accent">170</span></div>
+        <div class="stat-row"><span class="stat-key">Mass to Orbit, 2025</span><span class="stat-val">2,213 MT</span></div>
+        <div class="stat-row"><span class="stat-key">All-time Mass to Orbit</span><span class="stat-val">~7,400 MT</span></div>
+        <div class="stat-row"><span class="stat-key">Falcon 9 Max Refly</span><span class="stat-val c-accent">34×</span></div>
+        <div class="stat-row"><span class="stat-key">Adj. EBITDA, 2025</span><span class="stat-val c-green">$653M</span></div>
+        <div class="stat-row"><span class="stat-key">CapEx, 2025</span><span class="stat-val">$3.83B</span></div>
+      </div>
+    </div>
+
+    <div class="card seg-card">
+      <div class="glow-orb"></div>
+      <span class="seg-icon">🛰️</span>
+      <div class="seg-name">Connectivity</div>
+      <div class="seg-sub" style="color:var(--green);">Starlink Broadband · Mobile · Enterprise · Gov</div>
+      <div class="seg-desc">
+        <div class="toggleable">
+          <div class="summ">Starlink is the only global low-latency broadband satellite network. ~9,600 satellites in LEO — approximately 75% of all active maneuverable satellites in orbit — deliver 225 Mbps median speeds to 10.3M subscribers across 164 countries. A separate constellation of ~650 satellites provides satellite-to-mobile service across ~30 countries.</div>
+          <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+          <div class="qrev"><div class="qrev-inner">"Today, Starlink is the sole low-latency network available globally." "We provide fiber-like download speeds at a median of 225 Mbps during peak hours for residential users as of March 31, 2026 and the technological capability to provide service everywhere on Earth, including the poles." "While building terrestrial networks in such communities can be prohibitively expensive, Starlink is capable of delivering broadband connectivity anywhere on Earth with just a Starlink Kit."</div></div>
+        </div>
+      </div>
+      <div class="stat-list">
+        <div class="stat-row"><span class="stat-key">Subscribers, Q1 2026</span><span class="stat-val c-green">10.3M</span></div>
+        <div class="stat-row"><span class="stat-key">ARPU, Q1 2026</span><span class="stat-val">$66/mo</span></div>
+        <div class="stat-row"><span class="stat-key">Median Peak Speed</span><span class="stat-val">225 Mbps</span></div>
+        <div class="stat-row"><span class="stat-key">Revenue, 2025</span><span class="stat-val c-green">$11.39B</span></div>
+        <div class="stat-row"><span class="stat-key">Income from Ops, 2025</span><span class="stat-val c-green">$4.42B</span></div>
+        <div class="stat-row"><span class="stat-key">Adj. EBITDA, 2025</span><span class="stat-val c-green">$7.17B</span></div>
+      </div>
+    </div>
+
+    <div class="card seg-card">
+      <div class="glow-orb"></div>
+      <span class="seg-icon">🧠</span>
+      <div class="seg-name">AI</div>
+      <div class="seg-sub" style="color:var(--accent2);">Grok · xAI · X Platform · Colossus · Terafab</div>
+      <div class="seg-desc">
+        <div class="toggleable">
+          <div class="summ">xAI was acquired by SpaceX in February 2026. SpaceX was the first company to deploy a gigawatt-scale AI training cluster. Grok is integrated with X's real-time data feed. As of Q1 2026: 550M MAUs on X, 117M using Grok AI features. Anthropic pays $1.25B/month for Colossus compute capacity through May 2029.</div>
+          <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+          <div class="qrev"><div class="qrev-inner">"We were the first company to deploy a coherent gigawatt-scale AI training cluster." "Grok is designed as a truth-seeking AI model, built on our founder Elon Musk's mission to enable humanity to understand the universe. We define truth seeking as the active, relentless pursuit of what is objectively true about reality, and grounded in evidence, logic, empirical data, and first principles thinking." "Grok's deep integration with X enables freshness, relevance, and contextual awareness that we believe is a competitive differentiator."</div></div>
+        </div>
+      </div>
+      <div class="stat-list">
+        <div class="stat-row"><span class="stat-key">Compute Draw, Q1 2026</span><span class="stat-val c-accent2">1 GW</span></div>
+        <div class="stat-row"><span class="stat-key">X Monthly Active Users</span><span class="stat-val">~550M</span></div>
+        <div class="stat-row"><span class="stat-key">Grok AI MAUs</span><span class="stat-val c-accent2">~117M</span></div>
+        <div class="stat-row"><span class="stat-key">Anthropic Contract</span><span class="stat-val c-accent2">$1.25B/mo</span></div>
+        <div class="stat-row"><span class="stat-key">Revenue, 2025</span><span class="stat-val">$3.20B</span></div>
+        <div class="stat-row"><span class="stat-key">CapEx, 2025</span><span class="stat-val">$12.73B</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STARSHIP -->
+<section>
+  <div class="section-eyebrow">Starship</div>
+  <h2 class="section-title">The Key Enabler of Our<br>Long-Term Growth Strategy</h2>
+  <p class="section-sub">"Starship is designed to enable a step-function change in our launch capability across reusability, payload capacity, and launch cadence, and is the key enabler of our long-term growth strategy by unlocking entirely new categories of missions."</p>
+
+  <div class="grid-2">
+
+    <div class="overview-card">
+      <div class="card-title">Starship V3</div>
+      <div class="toggleable" style="margin-top:16px;">
+        <div class="summ">Designed for 100 metric tons to LEO in a fully reusable configuration with aviation-like turnaround times. 11 flight tests completed to date. Payload delivery to orbit expected H2 2026. V3 satellites and orbital AI compute both require Starship — neither can be deployed on Falcon 9 or Falcon Heavy.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Starship V3 is designed to deliver 100 metric tons to Earth's orbit in a fully reusable configuration while enabling rapid turnaround times akin to commercial aviation. Future generations of Starship are being designed to double this payload capacity." "With the future deployment of Starship… we aim to reduce the cost to reach orbit by 99% or more relative to the historical average launch cost." "We expect Starship to commence payload delivery to orbit in the second half of 2026."</div></div>
+      </div>
+    </div>
+
+    <div class="overview-card">
+      <div class="card-title">Catch and Reuse</div>
+      <div class="toggleable" style="margin-top:16px;">
+        <div class="summ">SpaceX catches Starship boosters mid-air using mechanical arms mounted on the launch tower — the same tower the rocket launched from. This enables rapid reuse without ground transport or stand-down time. Current FAA regulations do not permit return-to-launch-site reentries for Starship; a waiver is required and not yet guaranteed.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"We have achieved innovative milestones such as catching a booster using chopstick arms on the same tower it launched from. We expect this capability will facilitate rapid refurbishment and reuse, allowing for multiple launches per day at reduced costs." "Current FAA regulations do not permit return-to-launch-site reentries for Starship, requiring us to obtain a waiver from the FAA, which is not guaranteed and could delay or restrict such operations."</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FINANCIALS -->
+<section id="financials">
+  <div class="section-eyebrow">Financial Data</div>
+  <h2 class="section-title">Summary Historical<br>Consolidated Financial Data</h2>
+  <p class="section-sub">"Our financial results reflect the strength of our operating model and our ability to create and scale multiple new businesses." Space and Connectivity segments contributed the substantial majority of consolidated revenue in Q1 2026 and FY 2025.</p>
+
+  <div class="metrics-strip">
+    <div class="metric-cell">
+      <div class="metric-val c-accent glow-blue">$18.7B</div>
+      <div class="metric-label">Revenue, FY 2025</div>
+      <div class="metric-period">+33% year-over-year</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-val">$6.58B</div>
+      <div class="metric-label">Consolidated Adj. EBITDA, 2025</div>
+      <div class="metric-period">35% margin on revenue</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-val c-gold">$20.7B</div>
+      <div class="metric-label">Total Capital Expenditures, 2025</div>
+      <div class="metric-period">vs. $11.2B in 2024</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-val">$102B</div>
+      <div class="metric-label">Total Assets, Q1 2026</div>
+      <div class="metric-period">vs. $57.1B at Dec 31, 2024</div>
+    </div>
+  </div>
+
+  <div class="fin-grid">
+    <div class="chart-wrap">
+      <div class="chart-label">Annual Revenue ($M)</div>
+      <div class="bar-chart">
+        <div class="bar-group"><div class="bar-chart-val">$10,387</div><div class="bar" style="height:42%"></div><div class="bar-chart-label">FY 2023</div></div>
+        <div class="bar-group"><div class="bar-chart-val">$14,015</div><div class="bar" style="height:57%"></div><div class="bar-chart-label">FY 2024</div></div>
+        <div class="bar-group"><div class="bar-chart-val">$18,674</div><div class="bar" style="height:76%"></div><div class="bar-chart-label">FY 2025</div></div>
+        <div class="bar-group"><div class="bar-chart-val">$4,694</div><div class="bar dim" style="height:19%"></div><div class="bar-chart-label">Q1 2026</div></div>
+      </div>
+    </div>
+    <div class="kpi-stack">
+      <div class="kpi-card">
+        <div class="kpi-label">Connectivity Revenue, 2025</div>
+        <div class="kpi-val c-green glow-green">$11.39B</div>
+        <div class="kpi-note">+49.8% year-over-year</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Connectivity Income from Ops, 2025</div>
+        <div class="kpi-val">$4.42B</div>
+        <div class="kpi-note">+120.4% year-over-year</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">AI Loss from Ops, 2025</div>
+        <div class="kpi-val c-red">-$6.36B</div>
+        <div class="kpi-note neg">Earlier stage · continued investment</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Operating Cash Flow, 2025</div>
+        <div class="kpi-val">$6.79B</div>
+        <div class="kpi-note">+18% year-over-year</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-scroll"><table class="data-table">
+    <thead>
+      <tr>
+        <th>($M unless noted)</th>
+        <th>FY 2023</th><th>FY 2024</th><th>FY 2025</th><th>Q1 2025</th><th>Q1 2026</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hl"><td>Revenue</td><td>$10,387</td><td>$14,015</td><td>$18,674</td><td>$4,067</td><td>$4,694</td></tr>
+      <tr><td>Total Costs &amp; Expenses</td><td>$13,892</td><td>$13,549</td><td>$21,263</td><td>$4,040</td><td>$6,637</td></tr>
+      <tr><td>Income (Loss) from Operations</td><td class="neg-val">-$3,505</td><td class="pos">$466</td><td class="neg-val">-$2,589</td><td class="pos">$27</td><td class="neg-val">-$1,943</td></tr>
+      <tr><td>Consolidated Adj. EBITDA</td><td>—</td><td>—</td><td class="pos">$6,584</td><td>—</td><td class="pos">$1,127</td></tr>
+      <tr><td>Net Income (Loss)</td><td class="neg-val">-$4,628</td><td class="pos">$791</td><td class="neg-val">-$4,937</td><td class="neg-val">-$528</td><td class="neg-val">-$4,276</td></tr>
+      <tr><td>Net Cash from Operating Activities</td><td class="pos">$4,520</td><td class="pos">$5,776</td><td class="pos">$6,785</td><td class="pos">$727</td><td class="pos">$1,047</td></tr>
+      <tr><td>Total Capital Expenditures</td><td>$4,415</td><td>$11,163</td><td>$20,737</td><td>$4,140</td><td>$10,107</td></tr>
+      <tr><td>&nbsp;&nbsp;Space CapEx</td><td>$1,497</td><td>$2,032</td><td>$3,832</td><td>$759</td><td>$1,052</td></tr>
+      <tr><td>&nbsp;&nbsp;Connectivity CapEx</td><td>$2,455</td><td>$3,498</td><td>$4,178</td><td>$814</td><td>$1,332</td></tr>
+      <tr><td>&nbsp;&nbsp;AI CapEx</td><td>$463</td><td>$5,633</td><td>$12,727</td><td>$2,567</td><td>$7,723</td></tr>
+      <tr class="hl"><td>Connectivity Adj. EBITDA</td><td class="pos">$1,602</td><td class="pos">$3,849</td><td class="pos">$7,168</td><td class="pos">$1,618</td><td class="pos">$2,087</td></tr>
+      <tr><td>Space Adj. EBITDA</td><td class="pos">$997</td><td class="pos">$1,154</td><td class="pos">$653</td><td class="pos">$224</td><td class="neg-val">-$351</td></tr>
+      <tr><td>AI Adj. EBITDA</td><td class="pos">$1,222</td><td class="pos">$347</td><td class="neg-val">-$1,237</td><td class="neg-val">-$112</td><td class="neg-val">-$609</td></tr>
+      <tr><td>Cash &amp; Cash Equivalents</td><td>—</td><td>$11,385</td><td>$24,747</td><td>—</td><td>$15,852</td></tr>
+      <tr><td>Property, Plant &amp; Equipment, net</td><td>—</td><td>$21,147</td><td>$42,602</td><td>—</td><td>$53,879</td></tr>
+      <tr><td>Total Assets</td><td>—</td><td>$57,062</td><td>$92,079</td><td>—</td><td>$102,094</td></tr>
+      <tr><td>Total Liabilities</td><td>—</td><td>$31,258</td><td>$50,754</td><td>—</td><td>$60,512</td></tr>
+      <tr><td>Total Shareholders' Equity</td><td>—</td><td>$4,863</td><td>$2,573</td><td>—</td><td>$34,533</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- CAPEX -->
+<section>
+  <div class="section-eyebrow">Capital Expenditures by Segment</div>
+  <h2 class="section-title">Capital Expenditures</h2>
+  <p class="section-sub">Space segment funded $930M in Starship R&D during Q1 2026 alone, and $3.0B during FY 2025. Terafab — a collaboration with Tesla (March 2026) and Intel (April 2026) — has a long-term goal of producing one terawatt of compute hardware per year.</p>
+  <div class="capex-grid">
+    <div class="capex-card">
+      <div class="capex-seg">Space</div>
+      <div class="capex-val c-accent">$3.83B</div>
+      <div class="capex-period">FY 2025 · vs. $2.03B in 2024</div>
+      <div class="capex-note">$1.05B in Q1 2026</div>
+    </div>
+    <div class="capex-card">
+      <div class="capex-seg">Connectivity</div>
+      <div class="capex-val c-green">$4.18B</div>
+      <div class="capex-period">FY 2025 · vs. $3.50B in 2024</div>
+      <div class="capex-note">$1.33B in Q1 2026</div>
+    </div>
+    <div class="capex-card" style="border-color:rgba(179,107,255,0.28);">
+      <div class="capex-seg" style="color:var(--accent2);">AI</div>
+      <div class="capex-val c-accent2 glow-purple">$12.73B</div>
+      <div class="capex-period">FY 2025 · vs. $5.63B in 2024</div>
+      <div class="capex-note">$7.72B in Q1 2026 alone</div>
+    </div>
+  </div>
+</section>
+
+<!-- TAM -->
+<section id="tam">
+  <div class="section-eyebrow">Our Market Opportunity</div>
+  <h2 class="section-title">"The Largest Actionable Total Addressable Market in Human History"</h2>
+  <p class="section-sub">"We believe we have identified the largest actionable total addressable market in human history. We estimate that our quantifiable TAM is $28.5 trillion." China and Russia excluded from global estimates for illustrative purposes.</p>
+
+  <div class="tam-grid">
+    <div>
+      <div class="tam-total">$28.5T</div>
+      <div class="tam-sub">Quantifiable TAM — SpaceX S-1, May 2026 (excl. China &amp; Russia)</div>
+      <div class="tam-bars">
+        <div class="tam-bar-row">
+          <div class="tam-bar-hd"><span class="tam-bar-name">AI — $2.4T infra · $760B consumer · $600B advertising · $22.7T enterprise</span><span class="tam-bar-amt">$26.5T</span></div>
+          <div class="tam-bar-track"><div class="tam-bar-fill" style="width:93%"></div></div>
+        </div>
+        <div class="tam-bar-row">
+          <div class="tam-bar-hd"><span class="tam-bar-name">Connectivity — $870B Starlink Broadband · $740B Starlink Mobile</span><span class="tam-bar-amt">$1.6T</span></div>
+          <div class="tam-bar-track"><div class="tam-bar-fill" style="width:6%"></div></div>
+        </div>
+        <div class="tam-bar-row">
+          <div class="tam-bar-hd"><span class="tam-bar-name">Space — Space-enabled solutions</span><span class="tam-bar-amt">$370B</span></div>
+          <div class="tam-bar-track"><div class="tam-bar-fill" style="width:1.5%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="tam-breakdown">
+      <h4>TAM by Category</h4>
+      <div class="tam-row"><span class="tam-row-name">Enterprise AI Applications</span><span class="tam-row-val">$22.7T</span></div>
+      <div class="tam-row"><span class="tam-row-name">AI Infrastructure</span><span class="tam-row-val">$2.4T</span></div>
+      <div class="tam-row"><span class="tam-row-name">Consumer AI Subscriptions</span><span class="tam-row-val">$760B</span></div>
+      <div class="tam-row"><span class="tam-row-name">Starlink Broadband</span><span class="tam-row-val">$870B</span></div>
+      <div class="tam-row"><span class="tam-row-name">Starlink Mobile (D2C)</span><span class="tam-row-val">$740B</span></div>
+      <div class="tam-row"><span class="tam-row-name">Digital Advertising (X)</span><span class="tam-row-val">$600B</span></div>
+      <div class="tam-row"><span class="tam-row-name">Space-enabled Solutions</span><span class="tam-row-val">$370B</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTHS -->
+<section id="strengths">
+  <div class="section-eyebrow">Our Strengths</div>
+  <h2 class="section-title">Business Models That Are<br>"Incredibly Difficult to Replicate"</h2>
+  <p class="section-sub">From the S-1's stated competitive strengths: "Global Leadership in Orbital Launch Services · Unrivaled Satellite and Connectivity Platform · Truth-Seeking AI Model Enhanced by Real-Time Data · Extreme Vertical Integration Enabling High Velocity and Superior Cost Efficiency at Scale · Unique Ability to Scale New Trillion-Dollar Markets · Business Models that Are Incredibly Difficult to Replicate · Mission-Driven Culture and World-Class Talent."</p>
+
+  <div class="flywheel">
+
+    <div class="fw-cell" data-num="1">
+      <h3>Global Launch Leadership</h3>
+      <div class="toggleable">
+        <div class="summ">More than 80% of global mass to orbit annually since 2023. Primary launch provider for the US government — 11 of 12 NSSL missions and all 5 NASA ISS missions in 2025.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Since 2023, we have launched more than 80% of mass to orbit for the world each year with an over 99% mission success rate with Falcon rockets." "In 2025, we launched 11 of 12 National Security Space Launch medium and heavy lift missions and all five U.S. crew and cargo missions to the International Space Station for NASA."</div></div>
+      </div>
+    </div>
+
+    <div class="fw-cell" data-num="2">
+      <h3>Extreme Vertical Integration</h3>
+      <div class="toggleable">
+        <div class="summ">SpaceX owns the full value chain from design to launch to operations. No external dependencies on core systems. Enables faster iteration at lower cost than competitors relying on third-party suppliers.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Our extensive vertical integration and end-to-end control over the entire value chain, from design to launch to operations, allows us to achieve unprecedented speed and cost efficiency." "Our intense, mission-driven, engineering-first culture and focus on extreme vertical integration have propelled us to achieve what many deemed impossible."</div></div>
+      </div>
+    </div>
+
+    <div class="fw-cell" data-num="3">
+      <h3>Sole Global Low-Latency Network</h3>
+      <div class="toggleable">
+        <div class="summ">~9,600 satellites represent ~75% of all active maneuverable satellites in orbit. Connectivity requires only a Starlink Kit, with no ground infrastructure. Compounding advantage as launch cadence, cargo capacity, and reusability all improve together.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Today, Starlink is the sole low-latency network available globally." "By combining increasing launch cadence, expanding cargo capacity, and declining unit costs driven by rapid reusability — we have generated a compounding competitive advantage. This not only fortifies our core business, but also provides vast new market opportunities uniquely enabled by space."</div></div>
+      </div>
+    </div>
+
+    <div class="fw-cell" data-num="4">
+      <h3>Truth-Seeking AI + Real-Time Data</h3>
+      <div class="toggleable">
+        <div class="summ">Grok is built to pursue objective truth through evidence and first-principles reasoning. Integration with X's live data stream gives it contextual awareness and recency unavailable to models trained only on static datasets.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"We define truth seeking as the active, relentless pursuit of what is objectively true about reality, and grounded in evidence, logic, empirical data, and first principles thinking. Our goal is to understand and explain what the universe appears to be doing, as accurately as current knowledge allows." "Grok's deep integration with X enables freshness, relevance, and contextual awareness that we believe is a competitive differentiator."</div></div>
+      </div>
+    </div>
+
+    <div class="fw-cell" data-num="5">
+      <h3>Orbital AI Compute</h3>
+      <div class="toggleable">
+        <div class="summ">SpaceX plans to deploy AI compute satellites in Sun-synchronous orbit, powered by solar energy and connected via Starlink. Target: 100 GW of orbital compute capacity. Economically requires full Starship reusability. First deployment targeted as early as 2028.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"We believe these AI compute satellites in Sun-synchronous orbit will be able to handle energy-intensive AI workloads, such as inference demand, at far greater scale and efficiency than terrestrial alternatives, with Starlink providing low-latency, global connectivity linking these orbital AI systems to people around the world and delivering real-time intelligence. We expect to begin deploying our orbital AI compute satellites as early as 2028." "AI compute satellites at scale need full Starship reusability to be economically compelling."</div></div>
+      </div>
+    </div>
+
+    <div class="fw-cell" data-num="6">
+      <h3>Mission-Driven Culture</h3>
+      <div class="toggleable">
+        <div class="summ">SpaceX applies first-principles engineering — rejecting industry assumptions, deriving solutions from physics. Uses a five-step internal process called "The Algorithm." 170 orbital launches in 2025 is the operational output of that culture.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"SpaceX upended this paradigm through the application of first-principles thinking, which rejects industry assumptions and builds solutions based on the fundamental laws of physics." "SpaceX uses a proprietary five-step process called 'The Algorithm' to drive rapid innovation." "Our intense, mission-driven, engineering-first culture and focus on extreme vertical integration have propelled us to achieve what many deemed impossible."</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GROWTH STRATEGIES -->
+<section>
+  <div class="section-eyebrow">Our Growth Strategies</div>
+  <h2 class="section-title">Growth Strategies &amp;<br>Future Markets</h2>
+  <p class="section-sub">Future Markets are listed separately in the S-1. "Certain of these industries, such as space tourism and cargo transport to the Moon, are still emerging. Others, including in-orbit manufacturing, passenger transport to the Moon, passenger and cargo transport to Mars, energy production on the Moon and Mars, manufacturing capabilities on the Moon and Mars, and asteroid mining, do not exist today."</p>
+
+  <div class="list-2col">
+
+    <div class="li"><div class="li-dot"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Increase launch payload capacity.</strong> Dependent on Starship V3, designed for 100 MT to LEO in a fully reusable configuration. V3 satellites cannot be deployed on Falcon 9 or Falcon Heavy.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Our current operational rockets, including Falcon 9 and Falcon Heavy, are not capable of deploying V3 satellites and V2 Mobile satellites." "If we are unable to achieve the commercial development, anticipated performance, launch cadence, or cost efficiencies associated with Starship within expected timeframes, our ability to deploy next-generation V3 satellites, V2 Mobile satellites, and orbital AI compute infrastructure at scale… could be materially and adversely affected."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Grow Starlink Broadband and expand Starlink Mobile.</strong> EchoStar spectrum acquisition approved by FCC on May 12, 2026; expected to close November 2027. Provides AWS-3, AWS-4, and H-Block spectrum licenses needed for global V2 Mobile service and the $740B mobile TAM.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"In September 2025, we announced a definitive agreement with EchoStar to purchase its AWS-4 and H-block spectrum licenses. The Spectrum Transaction was approved by the FCC on May 12, 2026 and is subject to other closing conditions prior to completion. We expect the Spectrum Transaction to close in November 2027." "We must secure the global right to use the spectrum acquired from EchoStar from a number of international telecommunications regulators in order to make our V2 satellite-to-mobile services usable worldwide."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Deploy orbital AI compute at scale.</strong> Goal: 100 GW of annual compute power in orbit. Requires full Starship reusability to be economical. First deployment targeted as early as 2028. Powered by space-based solar, connected via Starlink.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Our goal is to deploy 100 gigawatts of annual compute power to orbit." "AI compute satellites at scale need full Starship reusability to be economically compelling. Without full reusability and rapid turnaround, Starship would still be capable of enabling progress on our next-generation Starlink, direct-to-cell, initial lunar objectives, and early AI compute satellite deployments, but such progress would be at a slower pace and higher cost."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Design and manufacture our own chips (Terafab).</strong> Collaboration with Tesla (March 2026) and Intel (April 2026). Long-term goal: one terawatt of compute hardware per year. Intended to reduce dependence on third-party GPU suppliers and produce chips optimized for the space environment.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"We announced a collaboration with Tesla in March 2026 to build the Terafab initiative with a long-term goal of producing one terawatt of compute hardware each year. Intel joined the project in April 2026 and is expected to contribute its expertise in designing, fabricating, and packaging ultra-high performance chips to help Terafab scale." "With this internal manufacturing capability, we plan to alleviate potential future chip shortages at SpaceX, especially as we develop orbital AI at scale, and design chips that are optimized for the space environment."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Grow Grok and X monetization.</strong> Cursor compute agreement (April 2026) gives SpaceX workloads from a high-frequency developer platform, with an option to acquire Cursor at a $60B implied equity value. Anthropic pays $1.25B/month for Colossus compute access through May 2029.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"In April 2026, we entered into a compute and option agreement with Anysphere, Inc., doing business as Cursor… we view as a compelling extension of our strategy to vertically integrate compute infrastructure, models, and applications." "The consideration for the acquisition of Cursor, if any, after the closing of this offering would consist of shares of our Class A common stock based on an implied equity value of Cursor of $60.0 billion." "In May 2026, we entered into Cloud Services Agreements with Anthropic PBC… the customer has agreed to pay us $1.25 billion per month through May 2029."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Establish the lunar economy.</strong> Cargo transport, manufacturing, and energy production on the Moon. SpaceX holds the NASA Human Landing System contract. A lunar presence is described as enabling terawatt-scale annual AI compute growth and serving as a stepping stone to Mars.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"We believe our goal of establishing a lunar presence will enable terawatt-scale annual AI compute growth, support deeper space exploration and industrialization, and serve as a stepping stone to establishing a civilization on Mars." "Establishing the lunar economy, including cargo transport, manufacturing, and energy production on the Moon" is listed as a stated growth strategy in the S-1.</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Point-to-point terrestrial travel (Future Market).</strong> Starship as a city-to-city transport vehicle. Does not yet exist commercially. Economics dependent on achieving full reusability and high launch cadence.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Point-to-point terrestrial travel" is listed explicitly in the S-1 as a Future Market. "A portion of our anticipated market opportunities is associated with industries described above under Future Markets. Certain of these industries… are still emerging. Others… do not exist today. While we believe these industries will develop over time, the manner in which they emerge… may differ materially from our current expectations."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Asteroid mining, in-orbit manufacturing, Mars transport (Future Markets).</strong> All listed in the S-1 as future market opportunities. None exist commercially today. Timelines described as "difficult or impossible to determine."</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Others, including in-orbit manufacturing, passenger transport to the Moon, passenger and cargo transport to Mars, energy production on the Moon and Mars, manufacturing capabilities on the Moon and Mars, and asteroid mining, do not exist today." "The timeline for certain of our initiatives involving unproven or new innovations, including our goal of deploying 100 gigawatts of annual compute power to orbit, the establishment of a lunar economy and interplanetary industrialization, and the launch cadence required to achieve these goals may be difficult or impossible to determine."</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RISKS -->
+<section>
+  <div class="section-eyebrow">Risk Factors</div>
+  <h2 class="section-title">Summary of<br>Principal Risk Factors</h2>
+  <p class="section-sub">"Because we are attempting to execute at a scale for which there is no precedent, we face heightened uncertainty with respect to design, engineering, procurement, construction, commissioning, and operational performance."</p>
+
+  <div class="list-2col">
+
+    <div class="li"><div class="li-dot red"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Starship development risk.</strong> All major growth initiatives — V3 satellites, orbital AI, lunar missions — depend on Starship. A delay cascades across the entire strategy. FAA currently does not permit RTLS reentries for Starship.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Any failure or delay in the development of Starship at scale or in achieving the required launch cadence, reusability and capabilities thereafter would delay or limit our ability to execute our growth strategy, including the deployment of next-generation satellites, global satellite-to-mobile connectivity, and orbital AI compute, which could materially adversely affect our business, financial condition, results of operations, and future prospects."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot red"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Launch delays and failures.</strong> SpaceX carries no insurance on satellites, payloads, or launch vehicles, bearing the full financial cost of any loss. Repeated failures could trigger regulatory restrictions on cadence.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"We have experienced, and will likely continue to experience, launch delays and failures that could have a material adverse effect on our business, financial condition, results of operations, and future prospects." "We do not typically obtain insurance coverage for our satellites, payloads, or launch vehicles, and as a result we bear the full financial cost of any such losses."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot red"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Regulatory approvals.</strong> FAA launch licenses, FCC spectrum, country-by-country telecom authorizations. Current FAA regulations do not allow return-to-launch-site reentries for Starship — a waiver is required and not guaranteed.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Any delays or difficulties in obtaining, maintaining or renewing required regulatory approvals and licenses required for our space-related activities, including the U.S. Federal Aviation Administration launch and reentry licenses, would materially delay or disrupt our operations, harm our business, or limit our ability to execute our business strategy." "Current FAA regulations do not permit return-to-launch-site reentries for Starship, requiring us to obtain a waiver from the FAA, which is not guaranteed."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot red"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Substantial indebtedness.</strong> SpaceX Bridge Loan: $20B outstanding as of April 30, 2026, maturing September 2027. Amended Credit Facility: up to $5B, terminating May 2031. Debt covenants restrict dividend payments.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Our substantial level of indebtedness could materially adversely affect our financial condition." As of April 30, 2026: $20,000 million outstanding under the SpaceX Bridge Loan, maturing September 2, 2027. The Amended SpaceX Credit Facility provides up to $5,000 million, terminating May 19, 2031. "Covenants under our Credit Agreements also restrict our ability to pay dividends."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot red"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Voting control concentration.</strong> Musk controls majority voting power through Class B shares (10 votes each). Public shareholders cannot elect directors or block major decisions. SpaceX is a controlled company under Nasdaq rules.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Mr. Musk will have the power to control the outcome of matters requiring shareholder approval, including election of all our directors, and to control our business and affairs." "Under our charter, the holders of our Class B common stock will have the right to elect a majority of our board… for so long as any shares of Class B common stock remain outstanding." Each share of Class B carries 10 votes vs. 1 vote for Class A.</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot red"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Capital requirements.</strong> Q1 2026 capex was $10.1B vs. $4.7B revenue. Full-year 2025 capex was $20.7B vs. $6.8B operating cash flow. Financing at scale requires continued access to capital markets on acceptable terms.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"The development and maintenance of the technologies and infrastructure necessary to support our current and future operations will require significant capital expenditures, and if we are unable to generate sufficient cash flow from operations or obtain additional financing on acceptable terms, our business, financial condition, results of operations, and future prospects could be materially and adversely affected."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot gold"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>AI segment early stage.</strong> xAI merger was February 2026. Business strategy still being developed. Requires significant capital for compute infrastructure, power, model training, and product development.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Our AI business is in a relatively early stage, it is being integrated into our organization, its business strategy is still developing, and it will require significant capital expenditures to fund compute, infrastructure and power generation, model training, and product development. Additionally, our AI business is subject to challenges inherent in a nascent, highly competitive, capital intensive and rapidly changing industry."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot gold"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Space environment risks.</strong> Orbital AI compute, once deployed, cannot be serviced or repaired. Component failures mean permanent capacity loss. Space weather events can permanently damage hardware. Satellites have shorter useful lives than the compute infrastructure they host.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Orbital AI compute infrastructure will not be readily accessible, and as a result, will not be easily repaired or upgraded, such that any component failures could result in permanent capacity loss, accelerated depreciation, decommissioning or need for replacement of the infrastructure." "We have not, and no one else has, previously operated or attempted to operate orbital AI compute, and the conditions of space on such AI infrastructure have not been tested."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot gold"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>AI regulation.</strong> Subject to GDPR, EU AI Act, FTC inquiries, Irish DPC investigation (launched February 2026), and evolving state AI laws across the US. Content moderation requirements on X vary by country and continue to evolve.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Our AI products and X platform are subject to complex and evolving U.S. and foreign laws and regulations that are subject to change and uncertain interpretation." "In February 2026, the Irish Data Protection Commission, our AI segment's privacy regulator in Europe, launched a large-scale inquiry to determine whether our AI segment has complied with its obligations under the European Union's General Data Protection Regulation."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot gold"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Spectrum and communications licenses.</strong> Satellite connectivity requires country-by-country authorizations that can be delayed, denied, or conditioned. Spectrum access is limited and highly regulated globally, including through the ITU coordination process.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"Any delays or difficulties in obtaining, maintaining or renewing required communications licenses and spectrum authorizations for our satellite connectivity services, including international and FCC satellite spectrum licenses, could materially delay or disrupt our operations." "Spectrum access itself is limited and highly regulated. Our rights to use certain frequencies are coordinated through the International Telecommunication Union and are subject to international agreements to prevent harmful interference."</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CORPORATE -->
+<section>
+  <div class="section-eyebrow">The Offering</div>
+  <h2 class="section-title">Corporate Structure</h2>
+  <p class="section-sub">"We were founded and incorporated as Space Exploration Technologies Corp., a Delaware corporation, on March 14, 2002 and reincorporated as a Texas corporation on February 14, 2024. Our principal executive offices are located at 1 Rocket Road, Starbase, Texas 78521."</p>
+
+  <div class="metrics-strip" style="grid-template-columns:repeat(3,1fr); margin-bottom:24px;">
+    <div class="metric-cell">
+      <div class="metric-val" style="font-size:36px;color:var(--tertiary);">Class A</div>
+      <div class="metric-label">1 Vote Per Share · Public Float</div>
+      <div class="metric-period">Ticker: SPCX · Nasdaq &amp; Nasdaq Texas</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-val" style="font-size:36px;color:var(--accent);">Class B</div>
+      <div class="metric-label">10 Votes Per Share · Musk-Controlled</div>
+      <div class="metric-period">Elects majority of the board</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-val" style="font-size:36px;color:var(--accent2);">5-for-1</div>
+      <div class="metric-label">2026 Stock Split</div>
+      <div class="metric-period">Effective May 4, 2026</div>
+    </div>
+  </div>
+
+  <div class="list-2col">
+
+    <div class="li"><div class="li-dot"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Controlled company status.</strong> Musk will beneficially own a majority of the voting power at IPO close. Not required to have a majority-independent board or independent compensation and nominating committees.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"We will be a controlled company as of the completion of this offering under Nasdaq and Nasdaq Texas listing rules. A controlled company is not required to have a majority of its board composed of independent directors or to establish independent compensation and nominating committees. As a controlled company, we will remain subject to rules that require us to have an audit committee composed entirely of independent directors."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>xAI and X mergers.</strong> xAI acquisition effective February 2, 2026. X Holdings acquired by xAI effective March 28, 2025. Both retroactively combined into SpaceX financials for all periods presented. Five-for-one stock split effective May 4, 2026.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"The consolidated financial statements of SpaceX have been retrospectively recast for all periods presented to include (i) the historical results of X.AI Holdings Corp., which was acquired by SpaceX, effective February 2, 2026, and X Holdings Corp., which was acquired by xAI, effective March 28, 2025, because these transactions were between entities under common control, and (ii) a five-for-one stock split of the Company's Class A, Class B, and Class C Common Stock, effective May 4, 2026."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Use of proceeds.</strong> IPO capital directed to AI compute infrastructure expansion, launch infrastructure, satellite constellation growth, and general corporate purposes.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"We intend to use the net proceeds from this offering to fund our growth strategy, including the expansion of our AI compute infrastructure, enhancements to our launch infrastructure and launch vehicles, increases in the scale and capacity of our satellite constellations, and any remaining amounts for general corporate purposes."</div></div>
+      </div>
+    </div>
+
+    <div class="li"><div class="li-dot"></div>
+      <div class="toggleable">
+        <div class="summ"><strong>Dividend policy.</strong> No cash dividends anticipated in the foreseeable future. All earnings retained for growth. Debt covenants also restrict dividend payments.</div>
+        <button class="qbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> S-1 Quote</button>
+        <div class="qrev"><div class="qrev-inner">"We do not anticipate declaring or paying any cash dividends to holders of our common stock in the foreseeable future. We currently intend to retain future earnings, if any, to finance the growth of our business." "Covenants under our Credit Agreements also restrict our ability to pay dividends, and we may enter into credit agreements or other borrowing arrangements in the future that restrict our ability to declare or pay cash dividends or make distributions in the future."</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>Space Exploration Technologies Corp. · S-1 Registration Statement · Filed May 20, 2026 · 1 Rocket Road, Starbase, TX 78521</div>
+  <div>SPCX · Nasdaq / Nasdaq Texas · All quotes sourced directly from the S-1 prospectus. Not investment advice.</div>
+</footer>
+
+<!-- STARFIELD -->
+<script>
+(function() {
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  let W, H, stars, shooters;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function makeStars() {
+    stars = [];
+    const layers = [
+      { n: 320, minR: 0.18, maxR: 0.55, a: [0.15, 0.45], col: '#ffffff' },
+      { n: 220, minR: 0.35, maxR: 0.85, a: [0.25, 0.65], col: '#ccd8ff' },
+      { n: 90,  minR: 0.7,  maxR: 1.3,  a: [0.35, 0.85], col: '#aab4ff' },
+      { n: 35,  minR: 1.2,  maxR: 2.1,  a: [0.45, 1.0],  col: '#ffffff' },
+      { n: 12,  minR: 1.8,  maxR: 2.8,  a: [0.55, 1.0],  col: '#ffe8c8' },
+    ];
+    layers.forEach(l => {
+      for (let i = 0; i < l.n; i++) {
+        const ba = l.a[0] + Math.random() * (l.a[1] - l.a[0]);
+        stars.push({
+          x: Math.random() * W, y: Math.random() * H,
+          r: l.minR + Math.random() * (l.maxR - l.minR),
+          alpha: ba, baseAlpha: ba, col: l.col,
+          ts: 0.004 + Math.random() * 0.018,
+          to: Math.random() * Math.PI * 2,
+          ta: 0.08 + Math.random() * 0.45,
+        });
+      }
+    });
+  }
+
+  shooters = [];
+  function spawn() {
+    const spd = 7 + Math.random() * 11;
+    const ang = (-0.35 + Math.random() * 0.3) * Math.PI;
+    shooters.push({
+      x: Math.random() * W * 1.3 - W * 0.15,
+      y: Math.random() * H * 0.55,
+      vx: Math.cos(ang) * spd, vy: Math.sin(ang) * spd,
+      len: 70 + Math.random() * 220,
+      alpha: 0, life: 0, max: 70 + Math.random() * 80,
+      width: 0.8 + Math.random() * 1.0,
+    });
+  }
+
+  let stimer = 0;
+  function draw(t) {
+    requestAnimationFrame(draw);
+    ctx.clearRect(0, 0, W, H);
+    stimer++;
+    if (stimer > 90 + Math.random() * 200) { spawn(); stimer = 0; }
+    const ts = t * 0.001;
+    stars.forEach(s => {
+      s.alpha = Math.max(0, s.baseAlpha + Math.sin(ts * s.ts * 60 + s.to) * s.ta);
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.col; ctx.globalAlpha = s.alpha; ctx.fill();
+      if (s.r > 1.6 && s.alpha > 0.72) {
+        ctx.globalAlpha = s.alpha * 0.35;
+        const sz = s.r * 5;
+        ctx.fillRect(s.x - sz/2, s.y - 0.5, sz, 1);
+        ctx.fillRect(s.x - 0.5, s.y - sz/2, 1, sz);
+      }
+    });
+    for (let i = shooters.length - 1; i >= 0; i--) {
+      const s = shooters[i];
+      s.life++; s.x += s.vx; s.y += s.vy;
+      const p = s.life / s.max;
+      s.alpha = p < 0.2 ? p / 0.2 : p > 0.65 ? 1 - (p - 0.65) / 0.35 : 1;
+      const sp = Math.sqrt(s.vx * s.vx + s.vy * s.vy);
+      const tx = s.x - s.vx * (s.len / sp), ty = s.y - s.vy * (s.len / sp);
+      const g = ctx.createLinearGradient(tx, ty, s.x, s.y);
+      g.addColorStop(0, 'rgba(255,255,255,0)');
+      g.addColorStop(0.65, `rgba(200,210,255,${s.alpha * 0.28})`);
+      g.addColorStop(1, `rgba(255,255,255,${s.alpha})`);
+      ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(s.x, s.y);
+      ctx.strokeStyle = g; ctx.globalAlpha = 1; ctx.lineWidth = s.width; ctx.stroke();
+      ctx.beginPath(); ctx.arc(s.x, s.y, 1.8, 0, Math.PI * 2);
+      ctx.fillStyle = '#fff'; ctx.globalAlpha = s.alpha; ctx.fill();
+      if (s.life >= s.max || s.x > W + 300 || s.y > H + 300) shooters.splice(i, 1);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  resize(); makeStars(); requestAnimationFrame(draw);
+  window.addEventListener('resize', () => { resize(); makeStars(); });
+  for (let i = 0; i < 4; i++) setTimeout(spawn, i * 600 + 400);
+})();
+
+// Toggle handler
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.qbtn');
+  if (!btn) return;
+  const t = btn.closest('.toggleable');
+  t.classList.toggle('open');
+  btn.querySelector('span') && (btn.querySelector('span').textContent = t.classList.contains('open') ? 'S-1 Quote' : 'S-1 Quote');
+});
+</script>
+</body>
+</html>
