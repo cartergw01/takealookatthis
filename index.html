@@ -103,9 +103,8 @@ nav {
   color: var(--primary); text-shadow: 0 0 30px rgba(126,184,255,0.45);
 }
 .nav-badge {
-  font-size: 10px; letter-spacing: 0.12em; color: var(--secondary);
-  border: 1px solid var(--border-light); padding: 3px 10px; border-radius: 2px;
-  text-transform: uppercase; background: rgba(126,184,255,0.04); font-weight: 400;
+  font-size: 10px; letter-spacing: 0.12em; color: var(--muted);
+  text-transform: uppercase; font-weight: 400;
 }
 .nav-right { display: flex; gap: 24px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
 .nav-right a { color: var(--secondary); text-decoration: none; transition: color 0.2s, text-shadow 0.2s; }
@@ -314,6 +313,37 @@ section:nth-child(even)::after { width: 700px; height: 450px; bottom: -120px; le
 .tam-row-name { color: var(--secondary); }
 .tam-row-val { font-weight: 700; color: var(--primary); }
 
+/* TAM REDESIGN */
+.tam-sub { margin-bottom: 40px; }
+.tam-stack { display: flex; height: 56px; border-radius: 3px; overflow: hidden; gap: 3px; margin-bottom: 44px; }
+.tam-stack-seg { display: flex; align-items: center; padding: 0 16px; overflow: hidden; transition: filter 0.2s; cursor: default; }
+.tam-stack-seg:hover { filter: brightness(1.18); }
+.tam-stack-ai   { flex: 93;  background: linear-gradient(90deg, rgba(14,52,120,0.95), rgba(126,184,255,0.88)); }
+.tam-stack-conn { flex: 5.6; background: linear-gradient(90deg, rgba(62,14,120,0.95), rgba(179,107,255,0.88)); }
+.tam-stack-space{ flex: 1.3; background: linear-gradient(90deg, rgba(0,62,48,0.95),  rgba(0,255,179,0.7)); }
+.tam-stack-inner { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.tam-stack-key  { font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.5); white-space: nowrap; }
+.tam-stack-num  { font-size: 15px; font-weight: 700; color: white; white-space: nowrap; }
+.tam-stack-pct  { font-size: 9px; color: rgba(255,255,255,0.55); }
+.tam-segments { display: grid; grid-template-columns: 3fr 2fr; gap: 16px; }
+.tam-seg-card { background: rgba(6,6,22,0.97); border: 1px solid var(--border-light); padding: 32px; }
+.tam-seg-eyebrow { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.tam-seg-num { font-size: 38px; font-weight: 700; letter-spacing: -0.04em; line-height: 1; margin-bottom: 28px; }
+.tam-seg-num.ai   { color: var(--accent);  text-shadow: 0 0 24px rgba(126,184,255,0.3); }
+.tam-seg-num.conn { color: var(--accent2); text-shadow: 0 0 24px rgba(179,107,255,0.3); }
+.tam-seg-num.space{ color: var(--green);   text-shadow: 0 0 24px rgba(0,255,179,0.3); }
+.tam-sub-rows { display: flex; flex-direction: column; gap: 16px; }
+.tam-sub-row  { display: flex; flex-direction: column; gap: 6px; }
+.tam-sub-hd   { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 12px; }
+.tam-sub-name { color: var(--secondary); }
+.tam-sub-val  { color: var(--primary); font-weight: 600; white-space: nowrap; }
+.tam-sub-bar  { height: 4px; background: rgba(80,80,180,0.18); border-radius: 2px; }
+.tam-sub-fill { height: 100%; border-radius: 2px; transition: width 0.6s ease; }
+.tam-sub-fill.ai   { background: linear-gradient(90deg, rgba(126,184,255,0.5), var(--accent)); box-shadow: 0 0 6px rgba(126,184,255,0.5); }
+.tam-sub-fill.conn { background: linear-gradient(90deg, rgba(179,107,255,0.5), var(--accent2)); box-shadow: 0 0 6px rgba(179,107,255,0.5); }
+.tam-sub-fill.space{ background: linear-gradient(90deg, rgba(0,255,179,0.5), var(--green)); box-shadow: 0 0 6px rgba(0,255,179,0.4); }
+.tam-seg-note { font-size: 11px; color: var(--muted); margin-top: 20px; line-height: 1.65; font-style: italic; }
+
 /* FLYWHEEL */
 .flywheel { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
 .fw-cell { background: rgba(6,6,22,0.95); padding: 46px; position: relative; overflow: hidden; transition: background 0.3s; }
@@ -333,6 +363,7 @@ section:nth-child(even)::after { width: 700px; height: 450px; bottom: -120px; le
 .li-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; box-shadow: 0 0 8px rgba(126,184,255,0.6); }
 .li-dot.red { background: var(--red); box-shadow: 0 0 8px rgba(255,82,112,0.55); }
 .li-dot.gold { background: var(--gold); box-shadow: 0 0 8px rgba(255,200,100,0.45); }
+#growth .li-dot, #risks .li-dot { display: none; }
 /* CAPEX */
 .capex-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 36px; }
 .capex-card { background: rgba(6,6,22,0.97); border: 1px solid var(--border-light); padding: 36px; transition: border-color 0.3s; }
@@ -372,7 +403,7 @@ footer {
   .nav-right { gap: 20px; font-size: 10px; }
   section { padding: 60px 20px; }
   .hero { padding: 100px 20px 60px; }
-  .grid-2, .grid-3, .flywheel, .capex-grid, .list-2col, .tam-grid, .fin-grid { grid-template-columns: 1fr; }
+  .grid-2, .grid-3, .flywheel, .capex-grid, .list-2col, .tam-grid, .tam-segments, .fin-grid { grid-template-columns: 1fr; }
   .metrics-strip { grid-template-columns: repeat(2, 1fr); }
   .hero-metrics { flex-wrap: wrap; gap: 32px; }
   .divider-h { display: none; }
@@ -423,7 +454,7 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">SPACEX <span class="nav-badge">S-1 · May 2026</span></div>
+  <div class="nav-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/d/de/SpaceX-Logo.svg" alt="SpaceX" height="16" style="filter:brightness(0) invert(1);display:block;"> <span class="nav-badge">S-1 · May 2026</span></div>
   <div class="nav-right">
     <a href="#overview">Overview</a>
     <a href="#segments">Segments</a>
@@ -785,34 +816,19 @@ footer {
   <h2 class="section-title">"The Largest Actionable Total Addressable Market in Human History"</h2>
   <p class="section-sub">"We believe we have identified the largest actionable total addressable market in human history. We estimate that our quantifiable TAM is $28.5 trillion." China and Russia excluded from global estimates for illustrative purposes.</p>
 
-  <div class="tam-grid">
-    <div>
-      <div class="tam-total">$28.5T</div>
-      <div class="tam-sub">Quantifiable TAM — SpaceX S-1, May 2026 (excl. China &amp; Russia)</div>
-      <div class="tam-bars">
-        <div class="tam-bar-row">
-          <div class="tam-bar-hd"><span class="tam-bar-name">AI — $2.4T infra · $760B consumer · $600B advertising · $22.7T enterprise</span><span class="tam-bar-amt">$26.5T</span></div>
-          <div class="tam-bar-track"><div class="tam-bar-fill" style="width:93%"></div></div>
-        </div>
-        <div class="tam-bar-row">
-          <div class="tam-bar-hd"><span class="tam-bar-name">Connectivity — $870B Starlink Broadband · $740B Starlink Mobile</span><span class="tam-bar-amt">$1.6T</span></div>
-          <div class="tam-bar-track"><div class="tam-bar-fill" style="width:6%"></div></div>
-        </div>
-        <div class="tam-bar-row">
-          <div class="tam-bar-hd"><span class="tam-bar-name">Space — Space-enabled solutions</span><span class="tam-bar-amt">$370B</span></div>
-          <div class="tam-bar-track"><div class="tam-bar-fill" style="width:1.5%"></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="tam-breakdown">
-      <h4>TAM by Category</h4>
-      <div class="tam-row"><span class="tam-row-name">Enterprise AI Applications</span><span class="tam-row-val">$22.7T</span></div>
-      <div class="tam-row"><span class="tam-row-name">AI Infrastructure</span><span class="tam-row-val">$2.4T</span></div>
-      <div class="tam-row"><span class="tam-row-name">Consumer AI Subscriptions</span><span class="tam-row-val">$760B</span></div>
-      <div class="tam-row"><span class="tam-row-name">Starlink Broadband</span><span class="tam-row-val">$870B</span></div>
-      <div class="tam-row"><span class="tam-row-name">Starlink Mobile (D2C)</span><span class="tam-row-val">$740B</span></div>
-      <div class="tam-row"><span class="tam-row-name">Digital Advertising (X)</span><span class="tam-row-val">$600B</span></div>
-      <div class="tam-row"><span class="tam-row-name">Space-enabled Solutions</span><span class="tam-row-val">$370B</span></div>
+  <div class="tam-total">$28.5T</div>
+  <div class="tam-sub">Quantifiable TAM — SpaceX S-1, May 2026 (excl. China &amp; Russia)</div>
+
+  <div class="chart-wrap">
+    <div class="chart-label">TAM by Category</div>
+    <div class="bar-chart">
+      <div class="bar-group"><div class="bar-chart-val">$22.7T</div><div class="bar" style="height:88%"></div><div class="bar-chart-label">Enterprise AI</div></div>
+      <div class="bar-group"><div class="bar-chart-val">$2.4T</div><div class="bar" style="height:9.4%"></div><div class="bar-chart-label">AI Infra</div></div>
+      <div class="bar-group"><div class="bar-chart-val">$870B</div><div class="bar" style="height:3.4%"></div><div class="bar-chart-label">Broadband</div></div>
+      <div class="bar-group"><div class="bar-chart-val">$760B</div><div class="bar" style="height:3.0%"></div><div class="bar-chart-label">Consumer AI</div></div>
+      <div class="bar-group"><div class="bar-chart-val">$740B</div><div class="bar" style="height:2.9%"></div><div class="bar-chart-label">D2C Mobile</div></div>
+      <div class="bar-group"><div class="bar-chart-val">$600B</div><div class="bar" style="height:2.4%"></div><div class="bar-chart-label">Advertising</div></div>
+      <div class="bar-group"><div class="bar-chart-val">$370B</div><div class="bar dim" style="height:1.5%"></div><div class="bar-chart-label">Space</div></div>
     </div>
   </div>
 </section>
